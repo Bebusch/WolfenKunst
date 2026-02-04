@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Wolfenkunst – Dein Zuhause beginnt hier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+    <div class="overlay">
+        <div class="hero-inner">
+            <img src="images/logo-wolfenkunst.svg" class="logo" alt="Wolfenkunst">
+            <p class="claim">Designobjekte aus Beton & Stahl</p>
+            <a href="#kontakt" class="btn">Projekt anfragen</a>
+        </div>
+    </div>
+</header>
+
+<section class="manufaktur">
+    <h2>Atelier</h2>
+    <p class="lead">
+        Wolfenkunst gestaltet Möbel, Leuchten und Designobjekte aus Beton und Stahl.
+    </p>
+    <p class="tagline">
+        Kühl im Ausdruck. Radikal im Design. Edel in der Wirkung.
+    </p>
+    <p>
+        Für Räume, die urbanen Charakter in ein warmes Zuhause tragen.
+    </p>
+</section>
+
+<img src="images/betonlinie.svg" class="divider">
+
+<section>
+    <h2>Produkte</h2>
+
+    <!-- FILTER -->
+    <div class="filter">
+        <button class="active" onclick="filterGallery('alle', this)">Alle</button>
+        <button onclick="filterGallery('deko', this)">Deko</button>
+        <button onclick="filterGallery('lampen', this)">Lampen</button>
+        <button onclick="filterGallery('moebel', this)">Möbel</button>
+    </div>
+
+    <!-- GALERIE -->
+    <div class="gallery">
+
+        <!-- DEKO -->
+        <div class="gallery-item"
+             data-category="deko"
+             data-name="Urban Pillow"
+             data-type="29,99 €"
+             data-desc="Handgefertigte Beton-Schlüsselablage mit minimalistischer Form.<br><br>Material: Beton<br>Maße: ca. 25 x 25 cm"
+             onclick="openLightbox(this)">
+            <img src="images/p1.jpg" alt="Urban Pillow">
+            <div class="gallery-name">Urban Pillow</div>
+        </div>
+        <div class="gallery-item"
+             data-category="deko"
+             data-name="Urban Block"
+             data-type="34,99 €"
+             data-desc="Moderner urbaner Kerzenhalter aus Beton mit vier Teelicht-Vertiefungen.<br><br>Material: Beton mit Metallakzenten<br>Maße: ca. 10 x 10 x 12 cm"
+             onclick="openLightbox(this)">
+            <img src="images/p4.jpg" alt="Urban Block">
+            <div class="gallery-name">Urban Block</div>
+        </div>        
+        <div class="gallery-item"
+             data-category="deko"
+             data-name="Urban Cylinder"
+             data-type="36,99 €"
+             data-desc="Schlichter zylindrischer Beton-Kerzenhalter für vier Teelichter mit rustikalen Metallakzenten.<br><br>Material: Beton und Metall<br>Maße: Ø 12 x 12 cm"
+             onclick="openLightbox(this)">
+            <img src="images/p5.jpg" alt="Urban Cylinder">
+            <div class="gallery-name">Urban Cylinder</div>
+       </div>
+            <div class="gallery-item"
+            data-category="deko"
+            data-name="Urban Taper"
+            data-type="39,99 €"
+            data-desc="Rechteckiger Beton-Kerzenhalter für hohe dünne Kerzen mit minimalistischen Metallakzenten.<br><br>Material: Beton und Metall<br>Maße: ca. 25 x 8 x 12 cm"
+            onclick="openLightbox(this)">
+           <img src="images/p6.jpg" alt="Urban Taper">
+           <div class="gallery-name">Urban Taper</div>
+       </div>   
+       
+        <!-- LAMPE -->
+        <div class="gallery-item"
+             data-category="lampen"
+             data-name="Urban Beam"
+             data-type="149,99 €"
+             data-desc="Stehlampe aus massivem Beton und Bewehrungsstahl.<br><br>Höhe: ca. 1 m<br>Fassung: E27"
+             onclick="openLightbox(this)">
+            <img src="images/p2.jpg" alt="Urban Beam">
+            <div class="gallery-name">Urban Beam</div>
+        </div>
+       <div class="gallery-item"
+            data-category="lampen"
+            data-name="Concrete Glow"
+            data-type="49,99 €"
+            data-desc="Tischlampe aus massivem Beton mit klarer, rechteckiger Form.<br><br>Der 25 cm hohe Betonsockel bildet die ruhige Basis für eine moderne E27-Fassung mit dekorativer Glühbirne. Das reduzierte Design bringt Material und Licht in perfekten Einklang und setzt einen urbanen Akzent auf Sideboard, Regal oder Nachttisch.<br><br>Höhe: ca. 25 cm<br>Material: Beton<br>Fassung: E27"
+            onclick="openLightbox(this)">
+           <img src="images/p7.jpg" alt="Concrete Glow">
+           <div class="gallery-name">Concrete Glow</div>
+       </div>
+
+        <!-- MÖBEL -->
+        <div class="gallery-item"
+             data-category="moebel"
+             data-name="Urban Edge"
+             data-type="29,99 €"
+             data-desc="Massives Beton-Regalbrett für Wandmontage im minimalistischen Urban-Design.<br><br>
+                     Robuste Betonplatte mit klarer Kante, perfekt für moderne Wohn- oder Arbeitsräume.<br>
+                     Reduziert, zeitlos und stabil – ideal als Ablage oder dekorative Wandlösung.<br><br>
+                     Wahlweise in zwei Maßen.<br>
+                     Maße: 50 x 26 x 5 cm<br>
+                     Maße: 100 x 26 x 5 cm<br>
+                     Material: Beton<br>
+                     Design: Urban, minimalistisch, massiv"
+             onclick="openLightbox(this)">
+            <img src="images/p3.jpg" alt="Urban Edge Small">
+            <div class="gallery-name">Urban Edge Small</div>
+        </div>
+       <div class="gallery-item"
+            data-category="moebel"
+            data-name="Urban Plateau"
+            data-type="899,00 €"
+            data-desc="Massiver Beton-Stubentisch im minimalistischen Industrial-Design.<br><br>
+                   Die quadratische Betonplatte mit einer Stärke von ca. 20 cm ruht auf einem klaren Untergestell aus Rechteckstahl.<br>
+                   Reduziert, kompromisslos und extrem stabil – ein Statement-Piece für moderne Wohnräume.<br><br>
+                   Maße: ca. 100 x 100 cm<br>
+                   Plattenstärke: ca. 20 cm<br>
+                   Gestellhöhe: ca. 15 cm<br>
+                   Material: Beton & Stahl<br>
+                   Design: Urban, minimalistisch, massiv"
+            onclick="openLightbox(this)">
+           <img src="images/p8.jpg" alt="Urban Edge">
+           <div class="gallery-name">Urban Edge</div>
+       </div>
+    </div>
+</section>
+
+<img src="images/betonlinie.svg" class="divider">
+
+<section id="kontakt">
+    <h2>Kontakt</h2>
+    <form action="mailto:philipvonwolf@icloud.com" method="post" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Name" required>
+        <input type="email" name="Email" placeholder="E-Mail" required>
+        <textarea name="Projekt" placeholder="Projektbeschreibung"></textarea>
+        <button type="submit">Anfrage senden</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Wolfenkunst ·
+    <a href="impressum.html">Impressum</a> ·
+    <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+    <span class="lightbox-close">&times;</span>
+
+    <div class="lightbox-content">
+        <img id="lightbox-img" alt="">
+        <div class="lightbox-info">
+            <h3></h3>
+            <p class="type"></p>
+            <p class="desc"></p>
+        </div>
+    </div>
+</div>
+
+<script src="lightbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+/* ------------------------------
+   RESET & GRUNDSTILE
+------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ------------------------------
+   FARBEN & DESIGN-VARIABLEN
+------------------------------- */
+:root {
+    --beton-dunkel: #121212;
+    --stahl-grau: #777;
+    --text-hell: #e5e5e5;
+    --akzent-kalt: #9a9a9a;
+}
+
+/* ------------------------------
+   BODY & HINTERGRUND
+------------------------------- */
+body {
+    background:
+        linear-gradient(rgba(18,18,18,0.75), rgba(18,18,18,0.75)),
+        url("images/beton-textur.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-hell);
+}
+
+/* ------------------------------
+   HERO / HEADER
+------------------------------- */
+.hero {
+    height: 60vh; /* weniger als 100vh, kompakter */
+    background: url("images/hero.jpg") center/cover no-repeat;
+    position: relative;
+}
+
+.overlay {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-inner {
+    max-width: 800px;
+    padding:80px 20px;
+    background: rgba(0,0,0,0.6); /* dunkler Kasten */
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Abstand Logo → Claim → Button */
+}
+
+/* ------------------------------
+   WOLF-ICON HINTER HEADER
+------------------------------- */
+.hero-inner::before {
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: url("images/wolf-icon.svg") no-repeat center center;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    opacity: 0.07; /* subtil */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Text & Button über Icon */
+.hero-inner > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Logo + Claim */
+.logo {
+    width: 1000px;
+    max-width: 80%;
+    margin-bottom: 10px; /* HIER */
+}
+
+.claim {
+    margin: 0 0 50px; /* unten größer */
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* ------------------------------
+   SECTION / CONTENT
+------------------------------- */
+section {
+    padding: 60px 8%;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+    border-left: 4px solid var(--akzent-kalt);
+    padding-left: 12px;
+}
+
+/* ------------------------------
+   BUTTONS
+------------------------------- */
+.btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: var(--stahl-grau);
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--akzent-kalt);
+    color: white;
+}
+
+/* ------------------------------
+   GALERIE
+------------------------------- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* max 4 Spalten */
+    gap: 20px; /* Abstand zwischen den Items */
+}
+
+.gallery-item {
+    position: relative; /* wichtig für Overlay */
+    width: 100%;
+    padding-top: 100%; /* macht das Item quadratisch */
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05); /* leichtes Zoomen beim Hover */
+    filter: grayscale(0%); /* optional: falls du Graustufen entfernt haben willst */
+}
+
+.gallery-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-name {
+    opacity: 1; /* Name erscheint nur beim Hover */
+}
+
+/* ------------------------------
+   FORM
+------------------------------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+}
+
+input, textarea {
+    padding: 12px;
+    background: #1e1e1e;
+    border: none;
+    color: white;
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------- */
+footer {
+    background: black;
+    padding: 30px;
+    text-align: center;
+}
+
+footer a {
+    color: var(--stahl-grau);
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+footer a:hover {
+    color: var(--akzent-kalt);
+}
+
+/* ------------------------------
+   DIVIDER / BETONLINIE
+------------------------------- */
+.divider {
+    width: 100%;
+    margin: 60px 0;
+    opacity: 0.6;
+}
+
+/* ------------------------------
+   PROJEKTSEITEN
+------------------------------- */
+.project {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.project img {
+    width: 100%;
+}
+
+/* ------------------------------
+   LIGHTBOX (ANIMIERT)
+------------------------------- */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.35s ease,
+        background 0.35s ease,
+        visibility 0s linear 0.35s;
+
+    z-index: 2000;
+}
+
+#lightbox.show {
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0,0,0,0.85);
+    transition:
+        opacity 0.35s ease,
+        background 0.35s ease;
+}
+
+/* Inhalt */
+.lightbox-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 90%;
+    background: rgba(0,0,0,0.75);
+    padding: 25px;
+    border-radius: 10px;
+
+    transform: scale(0.96);
+    opacity: 0;
+    transition: all 0.35s ease;
+}
+
+#lightbox.show .lightbox-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Bild */
+.lightbox-content img {
+    height: 600px;       /* gewünschte Höhe */
+    width: auto;         /* Breite passt sich proportional an */
+    border-radius: 6px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* Text */
+.lightbox-info {
+    max-width: 45%;
+    color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* CLOSE X */
+.lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2100;
+
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.25);
+    color: #ff4c4c;
+}
+
+
+/* ------------------------------
+   RESPONSIVE / MOBILE
+------------------------------- */
+@media (max-width: 768px) {
+    section {
+        padding: 50px 5%;
+    }
+    .logo {
+        width: 240px;
+    }
+    .claim {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 70vh;
+    }
+    .btn {
+        padding: 10px 24px;
+    }
+}
+
+.manufaktur {
+    max-width: 900px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.manufaktur h2 {
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    color: #eaeaea;
+}
+
+.manufaktur p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #b5b5b5;
+    margin-bottom: 1.5rem;
+}
+
+/* erster Absatz = stärker */
+.manufaktur .lead {
+    font-size: 1.15rem;
+    color: #ffffff;
+}
+
+/* Claim / Statement */
+.manufaktur .tagline {
+    font-size: 1.25rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6C55A3;
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 8px rgba(108,85,163,0.05);    
+}
+/* ------------------------------
+   FILTER
+------------------------------- */
+.filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter button {
+    background: transparent;
+    border: 1px solid var(--stahl-grau);
+    color: var(--text-hell);
+    padding: 8px 22px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.filter button:hover,
+.filter button.active {
+    background: var(--stahl-grau);
+    color: black;
+}
