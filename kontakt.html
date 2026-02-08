@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anfragen | Wolfenkunst</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Spezifisches Layout für die Kontaktseite */
+        .contact-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+            padding: 100px 10%;
+            min-height: 80vh;
+        }
+
+        .contact-form-side {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .contact-logo-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .big-contact-logo {
+            width: 100%;
+            max-width: 350px;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        /* Erfolgsmeldung Styling */
+        #success-message {
+            display: none;
+            padding: 40px;
+            border: 1px solid var(--accent);
+            background: var(--bg-section);
+            text-align: center;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Anpassung für Mobilgeräte */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                flex-direction: column;
+                padding: 60px 5%;
+            }
+            .contact-logo-side {
+                order: -1;
+                margin-bottom: 30px;
+            }
+            .big-contact-logo {
+                max-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="header-logo-container">
+                <svg width="350" height="60" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
+                    <text x="25" y="85" font-size="54" font-family="Orbitron" font-weight="700" letter-spacing="7" class="logo-text">
+                        WOLFENKUNST
+                    </text>
+                    <rect x="600" y="40" width="22" height="22" class="lila-square-top"/>
+                    <rect x="615" y="55" width="22" height="22" class="lila-square-bottom"/>
+                </svg>
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">Start</a>
+            <a href="gallery.html">Galerie</a>
+            <a href="kontakt.html" style="color: var(--accent);">Anfragen</a>
+            <button class="mode-toggle" onclick="toggleDarkMode()">◐</button>
+        </nav>
+    </header>
+
+    <main class="contact-wrapper">
+        <div class="contact-form-side" id="form-area">
+            <h1 style="font-family: 'Orbitron'; color: var(--accent); margin-bottom: 20px;">MASSIVE UNIKATE ANFRAGEN</h1>
+            
+            <div id="contact-intro-text" style="margin-bottom: 40px;">
+                <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">
+                    Vom ersten Guss bis zum fertigen Statement-Piece.
+                </p>
+                <p style="color: var(--text-soft);">
+                    Jedes Objekt der Wolfenkunst-Kollektion ist ein handgefertigtes Einzelstück. 
+                    Lassen Sie uns gemeinsam das nächste Highlight für Ihr urbanes Interior planen.
+                </p>
+            </div>
+
+            <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="E-Mail" required>
+                <textarea name="nachricht" rows="6" placeholder="Woran haben Sie Interesse?" required></textarea>
+                <button type="submit">ANFRAGE ABSENDEN</button>
+            </form>
+
+            <div id="success-message">
+                <h2 style="font-family: 'Orbitron'; color: var(--accent); margin-bottom: 15px;">ANFRAGE ÜBERMITTELT</h2>
+                <p style="color: var(--text-main);">Vielen Dank für Ihr Interesse. Wir melden uns in Kürze bei Ihnen.</p>
+                <p style="margin-top: 20px; font-size: 1.5rem;">🐺</p>
+            </div>
+        </div>
+
+        <div class="contact-logo-side">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="big-contact-logo">
+                <path d="M20 90 L40 30 L60 20 L80 30 L100 90 L70 75 L60 85 L50 75 Z"
+                      fill="none"
+                      stroke="var(--accent)"
+                      stroke-width="3"
+                      stroke-linejoin="miter"
+                      transform="translate(0, 0) scale(1.0)" />
+            </svg>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Wolfenkunst</p>
+        <div style="margin-top: 10px;">
+            <a href="impressum.html" style="margin-right: 15px; text-decoration: none; color: var(--text-soft);">Impressum</a>
+            <a href="datenschutz.html" style="text-decoration: none; color: var(--text-soft);">Datenschutz</a>
+        </div>
+    </footer>
+
+    <script>
+        // Funktion für die Bestätigung
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Verhindert Neuladen der Seite
+            
+            const form = document.getElementById('contact-form');
+            const intro = document.getElementById('contact-intro-text');
+            const success = document.getElementById('success-message');
+            
+            // Animation: Formular und Intro ausblenden
+            form.style.display = 'none';
+            intro.style.display = 'none';
+            
+            // Nachricht anzeigen
+            success.style.display = 'block';
+        }
+    </script>
+    <script src="theme.js"></script>
+</body>
+</html>
