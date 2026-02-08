@@ -3,10 +3,6 @@ Dieses Repository enthält den Code für die offizielle Website von Wolfenkunst.
 
 🛠 Letzte Änderungen & Updates
 1. Logo-Rebranding (SVG)
-Minimalistisches Wolf-Icon: Das Logo wurde von einfachen Quadraten auf ein geometrisches Wolf-Icon umgestellt.
-
-Integration im Header: Der Wolf wurde direkt in das „W“ des Schriftzugs „WOLFENKUNST“ integriert.
-
 Positionierung: Die Positionierung erfolgt über das transform-Attribut im SVG (translate und scale), um eine perfekte optische Mitte innerhalb der Typografie zu erreichen.
 
 Dynamische Farben: Verwendung von stroke="var(--accent)", damit das Logo im Darkmode automatisch die Farbe wechselt.
