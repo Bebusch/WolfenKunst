@@ -363,3 +363,76 @@ body.dark .filter-btn {
 .mode-toggle {
     border: 1px solid var(--text-main);
 }
+
+/* ===============================
+   HERO LOGO BANNER (Verbessert)
+=============================== */
+.hero-logo-banner {
+    width: 100%;
+    padding: 80px 10% 40px 10%; /* Bündig mit dem Header-Padding */
+    background-color: var(--bg-main);
+}
+
+.hero-logo-wrapper {
+    display: flex;
+    align-items: center; /* Quadrate mittig zur Texthöhe */
+    gap: 20px; /* Abstand zwischen Wort und Quadraten */
+}
+
+.hero-logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 8vw, 5.5rem); /* Skaliert auf Handys automatisch mit */
+    font-weight: 700;
+    letter-spacing: 12px;
+    color: var(--text-main);
+    line-height: 1;
+    margin: 0;
+}
+
+.hero-logo-squares {
+    display: flex;
+    flex-shrink: 0; /* Verhindert, dass die Quadrate gequetscht werden */
+    margin-top: 10px; /* Optische Korrektur, damit sie auf der Grundlinie sitzen */
+}
+
+/* Die lila Quadrate */
+.hero-logo-squares .lila-square-top {
+    fill: var(--accent);
+}
+
+.hero-logo-squares .lila-square-bottom {
+    fill: var(--accent);
+    opacity: 0.6;
+}
+
+/* Dark Mode Support für das Logo */
+body.dark .hero-logo-text {
+    color: var(--text-main);
+}
+
+/* Animation */
+.hero-logo-wrapper {
+    animation: fadeInSlide 1s ease-out forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Optimierung: Weniger Abstand und kleinere Schrift */
+@media (max-width: 768px) {
+    .hero-logo-banner {
+        padding: 40px 5%;
+    }
+    .hero-logo-text {
+        font-size: 100px; /* In SVG Koordinaten */
+        letter-spacing: 5px;
+    }
+}
