@@ -34,9 +34,9 @@
     
     <div class="gallery-filter-container">
         <button class="filter-btn active" data-filter="all">ALL</button>
-        <button class="filter-btn" data-filter="deko">DEKO</button>
-        <button class="filter-btn" data-filter="moebel">MÖBEL</button>
-        <button class="filter-btn" data-filter="leuchten">LEUCHTEN</button>
+        <button class="filter-btn" data-filter="us">URBAN STUDIO</button>
+        <button class="filter-btn" data-filter="uc">URBAN CITY</button>
+        <button class="filter-btn" data-filter="ul">URBAN LIGHT</button>
     </div>
 
     <div class="gallery-grid" id="gallery-grid"></div>
@@ -62,13 +62,34 @@
     </div>
 </div>
 
-    <footer>
-        <p>&copy; 2026 Wolfenkunst</p>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-    </footer>
-    
+<footer>
+    <p>&copy; 2026 Wolfenkunst</p>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
 <script src="theme.js"></script>
 <script src="gallery.js"></script>
+
+<script>
+    // Die Anker-Logik: Reagiert auf gallery.html#moebel etc.
+    window.addEventListener('load', () => {
+        // 1. Hole die Kategorie aus der URL (z.B. "moebel")
+        const hash = window.location.hash.substring(1); 
+
+        if (hash) {
+            // Kleiner Timeout, damit gallery.js die Elemente sicher gerendert hat
+            setTimeout(() => {
+                const targetBtn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
+                if (targetBtn) {
+                    targetBtn.click();
+                    // Optional: Scroll zum Grid-Anfang
+                    targetBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100); 
+        }
+    });
+</script>
+
 </body>
 </html>

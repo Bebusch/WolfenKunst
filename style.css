@@ -18,7 +18,7 @@
     --text-main: #1A1A1A;
     --text-soft: #444444;
     --accent: #4B0082;           /* Kräftiges Dunkellila */
-    --border-soft: rgba(0,0,0,0.1);
+    --border-soft: rgba(0,0,0,0.2);
     --logo-filter: none;         /* Normalzustand */
 }
 
@@ -159,11 +159,13 @@ body.dark .header-logo {
 }
 
 .art-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: 20px 20px 0px var(--accent);
-    transition: transform 0.5s ease;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.art-image img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(75, 0, 130, 0.3); /* Lila Glow beim Hover */
 }
 
 .text-block {
@@ -303,4 +305,61 @@ body::after {
     letter-spacing: 3px;
     border: 1px solid white;
     padding: 10px 20px;
+}
+
+/* ===============================
+   GALERIE FILTER BUTTONS (Kontrast-Fix)
+=============================== */
+.gallery-filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 40px 10% 20px 10%;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    /* Hintergrund leicht abheben vom Beton */
+    background: rgba(0, 0, 0, 0.05); 
+    /* var(--text-main) ist im Whitemode #1A1A1A (fast schwarz) */
+    color: var(--text-main); 
+    /* Deutlicher Rahmen, damit man die Form sieht */
+    border: 2px solid var(--text-main); 
+    padding: 12px 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+}
+
+/* Zustand: NICHT AKTIV (Light Mode Optimierung) */
+body:not(.dark) .filter-btn {
+    background: #E0E0E0; /* Etwas dunkler als der Haupt-Beton */
+    border-color: #1A1A1A;
+    color: #1A1A1A;
+}
+
+/* Zustand: HOVER & AKTIV (In beiden Modi) */
+.filter-btn:hover, 
+.filter-btn.active {
+    background: var(--accent) !important;
+    color: #FFFFFF !important; /* Erzwingt weiß auf lila */
+    border-color: var(--accent) !important;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Speziell für den Darkmode (falls sie dort zu grell sind) */
+body.dark .filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-main);
+}
+
+
+/* Spezifische Korrektur für den Darkmode Toggle, falls dieser auch schwer zu sehen ist */
+.mode-toggle {
+    border: 1px solid var(--text-main);
 }

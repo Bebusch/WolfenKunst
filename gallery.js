@@ -4,7 +4,7 @@ const products = [
     {
         img: "images/uc1.jpg",
         title: "URBAN PLATEAU",
-        category: "moebel",
+        category: "uc",
         material: "Hochleistungsbeton, handversiegelt",
         dimensions: "120 x 60 x 40 cm",
         weight: "45 kg",
@@ -14,7 +14,7 @@ const products = [
     {
         img: "images/uc2.jpg", // Pfad zu deinem Bild anpassen
         title: "URBAN SLATE",
-        category: "moebel",
+        category: "uc",
         material: "Hochleistungsbeton, faserverstärkt",
         dimensions: "100 x 25 x 5 cm",
         weight: "12 kg",
@@ -23,7 +23,7 @@ const products = [
         {
         img: "images/ul1.jpg",
         title: "URBAN PILLAR",
-        category: "leuchten",
+        category: "ul",
         material: "Beton & Bewehrungsstahl",
         dimensions: "ca. 20 x 20 x 100 cm",
         weight: "ca. 18 kg",
@@ -32,7 +32,7 @@ const products = [
     {
         img: "images/us1.jpg", // Pfad zu deinem Bild anpassen
         title: "URBAN RISE",
-        category: "deko",
+        category: "us",
         material: "Beton",
         dimensions: "10 x 10 x 15 cm",
         weight: "1 kg",
@@ -41,16 +41,15 @@ const products = [
     {
         img: "images/us2.jpg", // Pfad zu deinem Bild anpassen
         title: "URBAN BLOCK",
-        category: "deko",
+        category: "us",
         material: "Hochleistungsbeton, faserverstärkt",
         dimensions: "8 x 8 x 5 cm",
         weight: "0,2 kg",
-        desc: "Ein architektonisches Statement für die Wand. URBAN SLATE vereint die brachiale Schwere des Betons mit einer minimalistischen, schwebenden Montage."
-    },    
+        desc: "Kompakte Geometrie, maximale Struktur. Dieser massive Betonblock dient als minimalistisches Dekorationsobjekt für dein Zuhause."    },    
     {
         img: "images/ul2.jpg",
         title: "URBAN GLOW",
-        category: "leuchten",
+        category: "ul",
         material: "Stahlbeton, Messing-Finish",
         dimensions: "15 x 15 x 35 cm",
         weight: "4.2 kg",
@@ -86,12 +85,16 @@ function renderGallery(filter = 'all') {
     });
 }
 
-// 2. Filter-Events
+// 2. Filter-Events (Optimiert)
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
+        // Nutze currentTarget statt target, um sicherzugehen, dass wir den Button erwischen
+        const clickedBtn = e.currentTarget; 
+        
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        renderGallery(e.target.getAttribute('data-filter'));
+        clickedBtn.classList.add('active');
+        
+        renderGallery(clickedBtn.getAttribute('data-filter'));
     });
 });
 

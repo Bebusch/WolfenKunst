@@ -19,3 +19,22 @@ function toggleDarkMode() {
 }
 
 document.addEventListener('DOMContentLoaded', applyTheme);
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Prüfen, ob ein Anker in der URL ist (z.B. #moebel)
+    const category = window.location.hash.substring(1); 
+    
+    if (category) {
+        // Falls deine Filter-Funktion 'filterGallery' heißt:
+        filterGallery(category);
+        
+        // Optional: Den aktiven Button auch optisch hervorheben
+        const activeBtn = document.querySelector(`[onclick="filterGallery('${category}')"]`);
+        if (activeBtn) {
+            // Alle anderen Buttons zurücksetzen
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Diesen Button aktivieren
+            activeBtn.classList.add('active');
+        }
+    }
+});
