@@ -374,19 +374,14 @@ body.dark .filter-btn {
 }
 
 .hero-logo-wrapper {
-    display: flex;
-    align-items: center; /* Quadrate mittig zur Texthöhe */
-    gap: 20px; /* Abstand zwischen Wort und Quadraten */
+    display: flex;       /* Bringt Text und Quadrate in eine Reihe */
+    align-items: center; /* Zentriert sie vertikal zueinander */
+    gap: 15px;           /* Erzeugt einen schönen Abstand dazwischen */
 }
 
 .hero-logo-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 8vw, 5.5rem); /* Skaliert auf Handys automatisch mit */
-    font-weight: 700;
-    letter-spacing: 12px;
-    color: var(--text-main);
-    line-height: 1;
-    margin: 0;
+    margin: 0;           /* Entfernt Standard-Abstände vom H1 */
+    font-family: sans-serif; /* Oder deine gewählte Schrift */
 }
 
 .hero-logo-squares {
