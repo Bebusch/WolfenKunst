@@ -1,7 +1,3 @@
-Hier ist eine strukturierte README.md für dein Projekt. Sie dokumentiert alle technischen und visuellen Änderungen, die wir an der „Wolfenkunst“-Webseite vorgenommen haben.
-
-Diese Datei ist besonders hilfreich, wenn du später noch einmal nachvollziehen möchtest, wie das Logo positioniert wurde oder wie das Kontaktformular funktioniert.
-
 🐺 Wolfenkunst - Projekt-Dokumentation
 Dieses Repository enthält den Code für die offizielle Website von Wolfenkunst. Die Seite wurde für ein minimalistisches, urbanes Design optimiert, das die Ästhetik von handgefertigter Betonkunst widerspiegelt.
 
