@@ -29,38 +29,40 @@
     </nav>
 </header>
 
-    <main class="gallery-wrapper">
-        <section class="collection">
-            <h2 class="collection-title">URBAN KOLLEKTION</h2>
-            <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox(0)">
-                <img src="images/p8.jpg" alt="Urban Glow">
-                <div class="item-overlay"><span>URBAN CITY</span></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(1)">
-                <img src="images/p7.jpg" alt="Urban Pillar">
-                <div class="item-overlay"><span>URBAN LIGHT</span></div>
-            </div>
-        </div>
-        </section>
-    </main>
-
-    <div id="lightbox" class="lightbox-overlay">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-container">
-            <span class="nav-arrow prev" onclick="prevItem(event)">&#8249;</span>
-            <div class="lightbox-content">
-                <img id="lightbox-img" src="" alt="Vorschau">
-                <div class="lightbox-info">
-                    <h3 id="lightbox-title"></h3>
-                    <p id="lightbox-desc"></p>
-                </div>
-            </div>
-            <span class="nav-arrow next" onclick="nextItem(event)">&#8250;</span>
-        </div>
+<main class="gallery-wrapper">
+    <h2 class="collection-title">URBAN KOLLEKTION</h2>
+    
+    <div class="gallery-filter-container">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="deko">DEKO</button>
+        <button class="filter-btn" data-filter="moebel">MÖBEL</button>
+        <button class="filter-btn" data-filter="leuchten">LEUCHTEN</button>
     </div>
 
-    <script src="theme.js"></script>
-    <script src="gallery.js"></script>
+    <div class="gallery-grid" id="gallery-grid"></div>
+</main>
+
+<div id="lightbox" class="lightbox-overlay">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-container">
+        <span class="nav-arrow prev" onclick="prevItem(event)">&#8249;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Vorschau">
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+                <div class="lightbox-specs">
+                    <p><strong>Material:</strong> <span id="spec-material"></span></p>
+                    <p><strong>Maße:</strong> <span id="spec-dimensions"></span></p>
+                    <p><strong>Gewicht:</strong> <span id="spec-weight"></span></p>
+                </div>
+            </div>
+        </div>
+        <span class="nav-arrow next" onclick="nextItem(event)">&#8250;</span>
+    </div>
+</div>
+
+<script src="theme.js"></script>
+<script src="gallery.js"></script>
 </body>
 </html>
