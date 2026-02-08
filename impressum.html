@@ -2,36 +2,55 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Impressum – Wolfenkunst</title>
+    <title>Impressum | Wolfenkunst</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="header-logo-container">
+                <svg width="350" height="60" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
+                    <text x="25" y="85" font-size="54" font-family="Orbitron" font-weight="700" letter-spacing="7" class="logo-text">
+                        WOLFENKUNST
+                    </text>
+                    <rect x="600" y="40" width="22" height="22" class="lila-square-top"/>
+                    <rect x="615" y="55" width="22" height="22" class="lila-square-bottom"/>
+                </svg>
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">Start</a>
+            <a href="gallery.html">Galerie</a>
+            <a href="kontakt.html" style="color: var(--accent);">Anfragen</a>
+            <button class="mode-toggle" onclick="toggleDarkMode()">◐</button>
+        </nav>
+    </header>
 
-<section>
-    <h1>Impressum</h1>
+    <main style="padding: 100px 15%; min-height: 80vh;">
+        <h1 style="font-family: 'Orbitron'; color: var(--accent); margin-bottom: 40px;">Impressum</h1>
+        
+        <div style="background: var(--bg-section); padding: 50px; border-top: 4px solid var(--accent); line-height: 1.8;">
+            <h2 style="margin-bottom: 20px;"></h2>
+            <p><strong>WOLFENKUNST</strong><br>
+            Inhaber: Philip Wolf<br>
+            Testweg 1<br>
+            11111 Test</p>
+            
+            <p style="margin-top: 20px;">Kontakt:<br>
+            E-Mail: info@wolfenkunst.de<br>
+            Telefon: +49-callmedaddy</p>
 
-    <p><strong>Wolfenkunst</strong></p>
-    <p>
-        Inhaber: Philip Wolf<br>
-        Straße Hausnummer<br>
-        PLZ Ort<br>
-        Deutschland
-    </p>
+            <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border-soft);">
 
-    <p>
-        Telefon: XXXXXXXX<br>
-        E-Mail: info@wolfenkunst.de
-    </p>
-
-    <p>
-        Umsatzsteuer-ID gemäß §27a UStG:<br>
-        XXXXXXXX
-    </p>
-</section>
-
-<footer>
-    <a href="index.html">Zurück</a>
-</footer>
-
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Wolfenkunst</p>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </footer>
+    
+    <script src="theme.js"></script>
 </body>
 </html>
