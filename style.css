@@ -42,38 +42,44 @@ body {
     transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* ============================================================
-   2. HEADER & NAVIGATION (OPTIMIERT)
-   ============================================================ */
-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background-color: var(--bg-section);
-    position: relative;
-    z-index: 100;
+/* Grundstil für alle Nav-Links */
+.header-nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none; /* WICHTIG: Kein Rahmen für normale Links */
 }
 
-.header-logo-container {
-    flex: 1; /* Nimmt den verfügbaren Platz ein, drückt Nav nach rechts */
-    display: flex;
-    align-items: center;
+.header-nav a:hover:not(.nav-shop) {
+    color: var(--accent);
 }
 
-.header-logo-svg {
-    width: 100%;
-    max-width: 280px; /* Begrenzt die Größe am Desktop */
-    height: auto;
-    display: block;
+/* Spezial-Stil NUR für den Shop-Knopf */
+.header-nav .nav-shop {
+    padding: 8px 16px;
+    border: 2px solid var(--accent) !important; /* Lila Rahmen */
+    display: inline-block;
+    color: var(--text-main);
 }
 
-.header-nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-shrink: 0; /* Verhindert, dass die Knöpfe zusammengedrückt werden */
+.header-nav .nav-shop:hover {
+    background-color: var(--accent);
+    color: #FFFFFF !important;
+}
+
+/* Mode Toggle Button Optik */
+.mode-toggle {
+    background: none;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
 }
 
 /* NAVIGATION FÜR MOBILE GERÄTE (UNTER 600PX) */
