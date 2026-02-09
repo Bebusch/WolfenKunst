@@ -1,16 +1,19 @@
-html, body {
-    max-width: 100%;
-    overflow-x: hidden; /* Verhindert das seitliche Wackeln/Wischen */
-}
 /* ============================================================
    1. BASICS & VARIABLE SETUP
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600;700&display=swap');
 
+/* Überall Box-Sizing erzwingen, damit Padding nichts sprengt */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Verhindert seitliches Wackeln */
+    position: relative;
 }
 
 :root {
@@ -36,7 +39,6 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden;
     transition: background 0.4s ease, color 0.4s ease;
 }
 
@@ -49,16 +51,17 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    box-sizing: border-box; /* Wichtig: Padding wird in die Breite eingerechnet */
+    background-color: var(--bg-section);
 }
 
 .header-logo-container {
-    max-width: 70%; /* Logo nimmt maximal 70% der Breite ein */
+    max-width: 60%; /* Etwas reduziert für mehr Platz zur Nav */
 }
 
 .header-logo-svg {
-    width: 100%;    /* Das SVG passt sich dem Container an */
-    height: auto;   /* Behält das Seitenverhältnis bei */
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .logo-text { fill: var(--text-main); transition: fill 0.4s ease; }
@@ -92,7 +95,56 @@ header {
 }
 
 /* ============================================================
-   3. CONTENT LAYOUT (STARTSEITE)
+   3. HERO STATEMENT (STARTSEITE)
+   ============================================================ */
+.hero-statement {
+    padding: clamp(60px, 10vh, 100px) 5%;
+    text-align: center;
+    background-color: var(--bg-main);
+}
+
+.statement-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pre-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.hero-statement h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+}
+
+.hero-statement p {
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    color: var(--text-soft);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+.statement-line {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 0 auto;
+}
+
+/* ============================================================
+   4. CONTENT LAYOUT (STARTSEITE)
    ============================================================ */
 .art-static-item {
     display: flex;
@@ -111,49 +163,61 @@ header {
     height: auto;
     display: block;
     object-fit: cover;
-    
-    /* HIER DIE ÄNDERUNG: */
-    border-radius: 5px;         /* Wert anpassen: 8px dezent, 20px stark */
-    overflow: hidden;            /* Stellt sicher, dass das Bild die Rundung nicht "überlappt" */
-    
+    border-radius: 12px; /* Abgerundete Ecken */
     transition: transform 0.5s ease;
 }
 
 .text-block { flex: 1; }
-
-/* FIX: Entfernt Unterstreichung und falsche Farbe von den Links auf der Startseite */
-.text-block a {
-    text-decoration: none; /* Entfernt den Strich */
-    color: inherit;        /* Verhindert, dass der Link blau wird */
-    display: block;        /* Macht den Klickbereich sauberer */
-}
+.text-block a { text-decoration: none; color: inherit; display: block; }
 
 .text-block h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     margin-bottom: 20px;
-    color: var(--accent);  /* Dein lila bleibt erhalten */
+    color: var(--accent);
     letter-spacing: 2px;
-    transition: opacity 0.3s ease;
 }
 
-/* Optionaler Effekt: Titel wird beim Drüberfahren leicht transparent */
-.text-block a:hover h2 {
-    opacity: 0.8;
+/* ============================================================
+   5. MOBILE ANPASSUNGEN (RESPONSIVE)
+   ============================================================ */
+
+/* Tablet & Mobile Zick-Zack */
+@media (max-width: 850px) {
+    .art-static-item, 
+    .art-static-item.reverse {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 5%; /* Padding reduziert auf 5% */
+        gap: 30px;
+    }
+    
+    .art-image, .text-block {
+        width: 100%;
+    }
 }
 
+/* Speziell kleine Handys */
 @media (max-width: 600px) {
+    header {
+        padding: 15px 4%;
+    }
+    
     .header-nav {
-        gap: 10px; /* Weniger Abstand zwischen den Links */
+        gap: 8px;
     }
     
     .header-nav a {
-        font-size: 0.8rem; /* Etwas kleinere Schrift auf dem Handy */
+        font-size: 0.75rem;
+    }
+
+    .hero-statement h1 br {
+        display: none; /* Text bricht natürlich */
     }
 }
 
 /* ============================================================
-   4. FOOTER & EFFECTS
+   6. FOOTER & EFFECTS
    ============================================================ */
 footer {
     padding: 50px 5%;
@@ -179,84 +243,9 @@ body::after {
     z-index: 9999;
 }
 
-@media (max-width: 850px) {
-    .art-static-item, .art-static-item.reverse {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px 8%;
-        gap: 30px;
-    }
-}
-
-/* Globale Absicherung für Galerie-Bilder */
+/* Fix für Galerie-Bilder */
 .gallery-grid img {
     height: 100% !important;
     width: 100% !important;
     object-fit: cover !important;
-}
-
-header {
-    background-color: var(--bg-section); /* Verhindert transparenten Header */
-}
-
-/* ============================================================
-   HERO STATEMENT (STARTSEITE)
-   ============================================================ */
-
-.hero-statement {
-    padding: 100px 5% 60px 5%;
-    text-align: center;
-    background-color: var(--bg-main);
-}
-
-.statement-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.pre-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 5px;
-    color: var(--accent);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 20px;
-    opacity: 0.8;
-}
-
-.hero-statement h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 30px;
-    letter-spacing: -1px;
-}
-
-.hero-statement p {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color: var(--text-soft);
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-    line-height: 1.8;
-}
-
-/* Die lila Linie als Abschluss zum Content */
-.statement-line {
-    width: 60px;
-    height: 4px;
-    background-color: var(--accent);
-    margin: 0 auto;
-}
-
-/* Mobile Optimierung */
-@media (max-width: 600px) {
-    .hero-statement {
-        padding: 60px 5% 40px 5%;
-    }
-    .hero-statement h1 {
-        br { display: none; } /* Entfernt den Zeilenumbruch auf kleinen Screens */
-    }
 }
