@@ -1,3 +1,7 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Verhindert das seitliche Wackeln/Wischen */
+}
 /* ============================================================
    1. BASICS & VARIABLE SETUP
    ============================================================ */
@@ -40,24 +44,21 @@ body {
    2. HEADER & NAVIGATION
    ============================================================ */
 header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
-    background: var(--bg-section);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-soft);
+    padding: 20px 5%;
+    box-sizing: border-box; /* Wichtig: Padding wird in die Breite eingerechnet */
 }
 
-.header-logo-container { text-decoration: none; }
+.header-logo-container {
+    max-width: 70%; /* Logo nimmt maximal 70% der Breite ein */
+}
 
 .header-logo-svg {
-    height: clamp(30px, 4vw, 45px);
-    width: auto;
-    display: block;
+    width: 100%;    /* Das SVG passt sich dem Container an */
+    height: auto;   /* Behält das Seitenverhältnis bei */
 }
 
 .logo-text { fill: var(--text-main); transition: fill 0.4s ease; }
@@ -141,12 +142,13 @@ header {
     opacity: 0.8;
 }
 
-@media (max-width: 850px) {
-    .art-static-item, .art-static-item.reverse {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px 8%;
-        gap: 30px;
+@media (max-width: 600px) {
+    .header-nav {
+        gap: 10px; /* Weniger Abstand zwischen den Links */
+    }
+    
+    .header-nav a {
+        font-size: 0.8rem; /* Etwas kleinere Schrift auf dem Handy */
     }
 }
 
