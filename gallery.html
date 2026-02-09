@@ -12,7 +12,7 @@
 <header>
     <div class="header-left">
         <a href="index.html" class="header-logo-container">
-            <svg width="350" height="60" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
+            <svg width="350" height="60" viewBox="0 0 650 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
                 <text x="25" y="85" font-size="54" font-family="Orbitron" font-weight="700" letter-spacing="7" class="logo-text">
                     WOLFENKUNST
                 </text>
@@ -24,75 +24,41 @@
     <nav class="header-nav">
         <a href="index.html">Start</a>
         <a href="gallery.html">Galerie</a>
-        <a href="kontakt.html">Anfragen</a>
-        <a href="https://deine-shop-url.de" target="_blank" rel="noopener" class="nav-shop">
-        Shop ↗
-    </a>
+        <a href="kontakt.html" class="nav-hide-mobile">Anfragen</a>
+        <a href="https://deine-shop-url.de" target="_blank" rel="noopener" class="nav-shop">Shop ↗</a>
         <button class="mode-toggle" onclick="toggleDarkMode()">◐</button>
     </nav>
 </header>
 
+<div class="gallery-header">
+    <div class="accent-square"></div>
+    <h1 class="gallery-main-title">URBAN KOLLEKTION</h1>
+</div>
+
 <main class="gallery-wrapper">
-    <h2 class="collection-title">URBAN KOLLEKTION</h2>
-    
     <div class="gallery-filter-container">
-        <button class="filter-btn active" data-filter="all">ALL</button>
-        <button class="filter-btn" data-filter="us">URBAN STUDIO</button>
-        <button class="filter-btn" data-filter="uc">URBAN CITY</button>
-        <button class="filter-btn" data-filter="ul">URBAN LIGHT</button>
+        <button class="filter-btn active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="uc">Urban City</button>
+        <button class="filter-btn" data-filter="ul">Urban Light</button>
+        <button class="filter-btn" data-filter="us">Urban Studio</button>
     </div>
 
-    <div class="gallery-grid" id="gallery-grid"></div>
+    <div id="gallery-grid" class="gallery-grid">
+        </div>
 </main>
 
-<div id="lightbox" class="lightbox-overlay">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-container">
-        <span class="nav-arrow prev" onclick="prevItem(event)">&#8249;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="Vorschau">
-            <div class="lightbox-info">
-                <h3 id="lightbox-title"></h3>
-                <p id="lightbox-desc"></p>
-                <div class="lightbox-specs">
-                    <p><strong>Material:</strong> <span id="spec-material"></span></p>
-                    <p><strong>Maße:</strong> <span id="spec-dimensions"></span></p>
-                    <p><strong>Gewicht:</strong> <span id="spec-weight"></span></p>
-                </div>
-            </div>
+<div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-info">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
         </div>
-        <span class="nav-arrow next" onclick="nextItem(event)">&#8250;</span>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Wolfenkunst</p>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-</footer>
-
 <script src="theme.js"></script>
 <script src="gallery.js"></script>
-
-<script>
-    // Die Anker-Logik: Reagiert auf gallery.html#moebel etc.
-    window.addEventListener('load', () => {
-        // 1. Hole die Kategorie aus der URL (z.B. "moebel")
-        const hash = window.location.hash.substring(1); 
-
-        if (hash) {
-            // Kleiner Timeout, damit gallery.js die Elemente sicher gerendert hat
-            setTimeout(() => {
-                const targetBtn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
-                if (targetBtn) {
-                    targetBtn.click();
-                    // Optional: Scroll zum Grid-Anfang
-                    targetBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100); 
-        }
-    });
-</script>
-
 </body>
 </html>

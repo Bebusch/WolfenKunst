@@ -1,197 +1,149 @@
-/* gallery.css */
-.gallery-wrapper { 
-    padding: 60px 10%; 
-    max-width: 1400px; /* Begrenzt die maximale Breite der Galerie */
-    margin: 0 auto;    /* Zentriert die Galerie auf großen Bildschirmen */
+.gallery-wrapper {
+    padding: 40px 5%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-.collection-title {
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 5px;
-    margin-bottom: 30px;
-    border-left: 4px solid var(--accent);
-    padding-left: 20px;
-}
-
-/* Filter Styling */
 .gallery-filter-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 15px;
     margin-bottom: 50px;
+    flex-wrap: wrap;
 }
 
 .filter-btn {
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white;
-    padding: 8px 20px;
-    font-family: 'Orbitron';
-    font-size: 0.8rem;
+    border: 1px solid var(--accent);
+    color: var(--text-main);
+    padding: 10px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
+
+    /* HIER DIE ÄNDERUNG: */
+    border-radius: 2px; /* 8px wirkt bei Knöpfen oft harmonischer als die 12px der großen Bilder */
 }
 
-.filter-btn:hover, .filter-btn.active {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(255,255,255,0.05);
+.filter-btn.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); /* Dezenter lila Schein */
 }
 
-/* Grid & Items */
+/* Das Grid */
 .gallery-grid {
     display: grid;
-    /* Wir erhöhen die Spaltenanzahl: minmax(250px statt 300px) */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 40px; /* Mehr Platz zwischen den Objekten lässt sie "atmen" */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
 }
 
 .gallery-item {
     position: relative;
+    aspect-ratio: 16 / 10; /* Breiter Look */
     overflow: hidden;
     background: #000;
     cursor: pointer;
-    aspect-ratio: 1 / 1; /* Quadratisch wirkt oft ruhiger und aufgeräumter */
-    max-width: 350px;    /* Verhindert, dass Kacheln bei wenigen Produkten riesig werden */
-    margin: 0 auto;      /* Zentriert die Kacheln in ihrer Grid-Zelle */
-    animation: fadeInUp 0.6s ease forwards;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 100%; /* Wichtig für object-fit */
-    object-fit: cover; /* Schneidet Ränder dezent ab, füllt aber die Kachel */
-    object-position: center; /* Zentriert den Fokus des Bildes */
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
-    filter: grayscale(1) brightness(0.7);
+    height: 100%;
+    object-fit: cover; /* KEIN STRECKEN MEHR */
+    opacity: 0.8;
+    transition: 0.6s ease;
 }
 
 .gallery-item:hover img {
+    opacity: 1;
     transform: scale(1.05);
-    filter: grayscale(0) brightness(1);
 }
 
-/* gallery.css Upgrade */
-
-/* Korrektur in gallery.css */
-
-/* In gallery.css anpassen */
-
+/* Text auf dem Bild */
 .item-overlay {
     position: absolute;
-    bottom: 0; 
-    top: auto; 
-    left: 0; 
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 20%; 
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Schiebt den Inhalt vertikal nach unten */
-    align-items: center;      /* ZENTRIERT den Inhalt horizontal */
-    
-    padding: 10px 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-    
-    color: var(--accent);
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
     font-family: 'Orbitron';
-    
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
-    z-index: 10;
 }
 
-.item-overlay span {
-    font-size: 0.9rem; 
-    letter-spacing: 2px;
+/* ============================================================
+   NEUER GALERIE HEADER (ÜBER DEN KNÖPFEN)
+   ============================================================ */
+
+.gallery-header {
+    display: flex;          /* Legt Elemente nebeneinander */
+    align-items: center;    /* Zentriert den Strich vertikal zum Text */
+    gap: 20px;              /* Abstand zwischen Strich und Text */
+    padding: 60px 5% 20px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Das kleine lila Quadrat über dem Text */
+.accent-square {
+    width: 5px;             /* Deine gewünschte Breite */
+    height: 40px;           /* Höhe an die Schriftgröße anpassen */
+    background-color: var(--accent);
+    flex-shrink: 0;         /* Verhindert, dass der Strich am Handy gequetscht wird */
+    box-shadow: 0 0 15px rgba(75, 0, 130, 0.3);
+}
+
+.gallery-main-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 6vw, 2rem);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;              /* Entfernt Standardabstände */
     text-transform: uppercase;
-    
-    /* Kein Rand, kein Padding links – für perfekte Zentrierung */
-    border: none;
-    padding-left: 0; 
-    
-    text-align: center; /* Sicherungskopie für den Textfluss */
-    margin-bottom: 5px; 
+    color: var(--text-main);
 }
 
-/* Hover-Effekt: Das Overlay fährt exakt auf 0 (also bündig zum Boden) */
-.gallery-item:hover .item-overlay {
-    transform: translateY(0);
+/* Mobile Anpassung */
+@media (max-width: 600px) {
+    .gallery-header {
+        padding: 40px 5% 10px 5%;
+    }
+    .accent-square {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 10px;
+    }
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* HANDY OPTIMIERUNG */
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-item {
+        aspect-ratio: 4 / 3; /* Am Handy etwas quadratischer */
+    }
+    .filter-btn {
+        flex: 1 1 40%;
+        font-size: 0.7rem;
+    }
 }
 
-/* LIGHTBOX DESIGN */
-.lightbox-overlay {
+/* Lightbox Basic Styles */
+.lightbox {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(10px);
+    inset: 0;
+    background: rgba(0,0,0,0.9);
     display: none;
     z-index: 2000;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    padding: 20px;
 }
-
-.lightbox-overlay.active { display: flex; opacity: 1; }
-
-.lightbox-container {
-    display: flex;
-    align-items: center;
-    width: 90%;
-    max-width: 1100px;
-    transform: scale(0.9);
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.lightbox-overlay.active .lightbox-container { transform: scale(1); }
-
-#lightbox-img {
-    max-height: 70vh; /* Begrenzt die Höhe bei Hochformaten */
-    max-width: 100%;  /* Begrenzt die Breite bei Querformaten */
-    width: auto;      /* Erhält das Originalverhältnis */
-    height: auto;
-    object-fit: contain; /* Zeigt das komplette Bild ohne Beschnitt */
-    border: 1px solid rgba(255,255,255,0.1);
-    display: block;
-    margin: 0 auto;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.fade-out { opacity: 0 !important; transform: translateY(10px) scale(0.98); }
-
-.lightbox-info { margin-top: 25px; color: white; text-align: left; }
-.lightbox-info h3 { font-family: 'Orbitron'; color: var(--accent); margin-bottom: 10px; }
-.lightbox-info p { line-height: 1.6; color: #ccc; font-size: 0.95rem; }
-
-.lightbox-specs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.lightbox-specs p { font-size: 0.85rem; margin: 0; }
-.lightbox-specs strong { color: var(--accent); display: block; font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 1px; }
-
-.nav-arrow { font-size: 4rem; color: white; cursor: pointer; padding: 20px; user-select: none; transition: all 0.3s; }
-.nav-arrow:hover { color: var(--accent); transform: scale(1.1); }
-
-.lightbox-close {
-    position: absolute;
-    top: 30px; right: 40px;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-.lightbox-close:hover { transform: rotate(90deg); color: var(--accent); }
+.lightbox.active { display: flex; }
+.lightbox-content { max-width: 1000px; width: 100%; text-align: center; }
+.lightbox img { max-width: 100%; max-height: 70vh; object-fit: contain; }

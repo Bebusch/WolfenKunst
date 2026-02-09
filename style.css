@@ -1,6 +1,6 @@
-/* ===============================
-   1. RESET & FONTS
-=============================== */
+/* ============================================================
+   1. BASICS & VARIABLE SETUP
+   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600;700&display=swap');
 
 * {
@@ -9,43 +9,36 @@
     box-sizing: border-box;
 }
 
-/* ===============================
-   2. FARBSYSTEM (Beton & Dunkellila)
-=============================== */
 :root {
-    --bg-main: #D1D1D1;          /* Heller Beton */
+    --bg-main: #D1D1D1;
     --bg-section: #E0E0E0;
     --text-main: #1A1A1A;
     --text-soft: #444444;
-    --accent: #4B0082;           /* Kräftiges Dunkellila */
-    --border-soft: rgba(0,0,0,0.2);
-    --logo-filter: none;         /* Normalzustand */
+    --accent: #4B0082;
+    --border-soft: rgba(0,0,0,0.1);
 }
 
 body.dark {
-    --bg-main: #1C1C1C;          /* Dunkler Anthrazit-Beton */
+    --bg-main: #1C1C1C;
     --bg-section: #252525;
     --text-main: #F2F2F2;
     --text-soft: #A0A0A0;
-    --accent: #8A2BE2;           /* Leuchtendes Lila für Kontrast */
+    --accent: #8A2BE2;
     --border-soft: rgba(255,255,255,0.1);
 }
 
-/* ===============================
-   3. BASIS STYLES
-=============================== */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    transition: background 0.6s ease, color 0.6s ease;
     overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* ===============================
-   4. STICKY HEADER (Überall gleich)
-=============================== */
+/* ============================================================
+   2. HEADER & NAVIGATION
+   ============================================================ */
 header {
     position: sticky;
     top: 0;
@@ -53,186 +46,115 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10%;
+    padding: 10px 5%;
     background: var(--bg-section);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-soft);
-    transition: background 0.6s ease;
 }
 
+.header-logo-container { text-decoration: none; }
+
 .header-logo-svg {
-    height: 45px; /* Höhe im Header */
+    height: clamp(30px, 4vw, 45px);
     width: auto;
     display: block;
 }
 
-.logo-text {
-    fill: var(--text-main); /* Schwarz im Hellen, Weiß im Darkmode */
-    transition: fill 0.6s ease;
-}
-
-/* Das obere Quadrat - Volle Deckkraft */
-.lila-square-top {
-    fill: var(--accent); /* Nutzt dein Dunkellila */
-    transition: fill 0.6s ease;
-}
-
-/* Das untere Quadrat - Versetzt und leicht transparent für den Layer-Look */
-.lila-square-bottom {
-    fill: var(--accent);
-    opacity: 0.6;
-    transition: fill 0.6s ease;
-}
-
-/* Hover-Effekt: Das Logo fängt leicht an zu leuchten, wenn man drüberfährt */
-.header-logo-container:hover .lila-square-top {
-    filter: brightness(1.2);
-}
-
-/* Der Filter macht Schwarz zu Weiß, lässt Lila aber Lila */
-body.dark .header-logo {
-    filter: invert(1) hue-rotate(180deg) brightness(1.2);
-}
+.logo-text { fill: var(--text-main); transition: fill 0.4s ease; }
+.lila-square-top { fill: var(--accent); }
+.lila-square-bottom { fill: var(--accent); opacity: 0.6; }
 
 .header-nav {
     display: flex;
     align-items: center;
+    gap: clamp(10px, 2vw, 25px);
 }
 
 .header-nav a {
-    margin-left: 25px;
     text-decoration: none;
     color: var(--text-main);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: color 0.3s;
 }
 
-.header-nav a:hover {
-    color: var(--accent);
-}
+.header-nav a:hover { color: var(--accent); }
 
 .mode-toggle {
     background: none;
     border: 1px solid var(--accent);
     color: var(--text-main);
-    padding: 5px 12px;
-    margin-left: 20px;
+    padding: 4px 10px;
     cursor: pointer;
     border-radius: 4px;
-    transition: all 0.3s;
 }
 
-.mode-toggle:hover {
-    background: var(--accent);
-    color: white;
-}
-
-/* ===============================
-   5. STARTSEITE (Zick-Zack Layout)
-=============================== */
-.logo-banner {
-    padding: 60px 10%;
-    text-align: center;
-}
-
-.orbitron-logo text {
-    fill: var(--text-main);
-    transition: fill 0.6s ease;
-}
-
+/* ============================================================
+   3. CONTENT LAYOUT (STARTSEITE)
+   ============================================================ */
 .art-static-item {
     display: flex;
     align-items: center;
-    gap: 80px;
-    padding: 100px 10%;
+    gap: 60px;
+    padding: 80px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.art-static-item.reverse {
-    flex-direction: row-reverse;
-}
+.art-static-item.reverse { flex-direction: row-reverse; }
 
-.art-image {
-    flex: 1.2;
-}
-
+.art-image { flex: 1.2; width: 100%; }
 .art-image img {
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    
+    /* HIER DIE ÄNDERUNG: */
+    border-radius: 5px;         /* Wert anpassen: 8px dezent, 20px stark */
+    overflow: hidden;            /* Stellt sicher, dass das Bild die Rundung nicht "überlappt" */
+    
+    transition: transform 0.5s ease;
 }
 
-.art-image img:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(75, 0, 130, 0.3); /* Lila Glow beim Hover */
-}
+.text-block { flex: 1; }
 
-.text-block {
-    flex: 1;
+/* FIX: Entfernt Unterstreichung und falsche Farbe von den Links auf der Startseite */
+.text-block a {
+    text-decoration: none; /* Entfernt den Strich */
+    color: inherit;        /* Verhindert, dass der Link blau wird */
+    display: block;        /* Macht den Klickbereich sauberer */
 }
 
 .text-block h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     margin-bottom: 20px;
-    color: var(--accent);
-}
-
-/* ===============================
-   6. KONTAKTFORMULAR (Beton-Style)
-=============================== */
-.content h1 {
-    font-family: 'Orbitron';
-    color: var(--accent);
-    margin-bottom: 30px;
-}
-
-form {
-    max-width: 600px;
-    background: var(--bg-section);
-    padding: 40px;
-    border-top: 4px solid var(--accent);
-}
-
-input, textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    background: var(--bg-main);
-    border: 1px solid var(--border-soft);
-    color: var(--text-main);
-    font-family: inherit;
-    transition: border-color 0.3s;
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-button[type="submit"] {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    text-transform: uppercase;
+    color: var(--accent);  /* Dein lila bleibt erhalten */
     letter-spacing: 2px;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    opacity: 0.9;
+/* Optionaler Effekt: Titel wird beim Drüberfahren leicht transparent */
+.text-block a:hover h2 {
+    opacity: 0.8;
 }
 
-/* ===============================
-   7. FOOTER & RECHTLICHES
-=============================== */
+@media (max-width: 850px) {
+    .art-static-item, .art-static-item.reverse {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 8%;
+        gap: 30px;
+    }
+}
+
+/* ============================================================
+   4. FOOTER & EFFECTS
+   ============================================================ */
 footer {
-    padding: 60px 10%;
+    padding: 50px 5%;
     background: var(--bg-section);
     text-align: center;
     border-top: 1px solid var(--border-soft);
@@ -241,18 +163,10 @@ footer {
 footer a {
     color: var(--text-soft);
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 10px;
     font-size: 0.8rem;
-    transition: color 0.3s;
 }
 
-footer a:hover {
-    color: var(--accent);
-}
-
-/* ===============================
-   8. ANIMATIONEN & GRAIN
-=============================== */
 body::after {
     content: "";
     position: fixed;
@@ -262,172 +176,85 @@ body::after {
     pointer-events: none;
     z-index: 9999;
 }
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding-top: 40px;
+
+@media (max-width: 850px) {
+    .art-static-item, .art-static-item.reverse {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 8%;
+        gap: 30px;
+    }
 }
 
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
+/* Globale Absicherung für Galerie-Bilder */
+.gallery-grid img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
 }
 
-.gallery-item img {
-    width: 100%;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+header {
+    background-color: var(--bg-section); /* Verhindert transparenten Header */
 }
 
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
+/* ============================================================
+   HERO STATEMENT (STARTSEITE)
+   ============================================================ */
 
-.item-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(75, 0, 130, 0.2); /* Dein Lila-Ton ganz dezent */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.gallery-item:hover .item-overlay {
-    opacity: 1;
-}
-
-.item-overlay span {
-    font-family: 'Orbitron';
-    color: white;
-    letter-spacing: 3px;
-    border: 1px solid white;
-    padding: 10px 20px;
-}
-
-/* ===============================
-   GALERIE FILTER BUTTONS (Kontrast-Fix)
-=============================== */
-.gallery-filter-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 40px 10% 20px 10%;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    /* Hintergrund leicht abheben vom Beton */
-    background: rgba(0, 0, 0, 0.05); 
-    /* var(--text-main) ist im Whitemode #1A1A1A (fast schwarz) */
-    color: var(--text-main); 
-    /* Deutlicher Rahmen, damit man die Form sieht */
-    border: 2px solid var(--text-main); 
-    padding: 12px 24px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-transform: uppercase;
-}
-
-/* Zustand: NICHT AKTIV (Light Mode Optimierung) */
-body:not(.dark) .filter-btn {
-    background: #E0E0E0; /* Etwas dunkler als der Haupt-Beton */
-    border-color: #1A1A1A;
-    color: #1A1A1A;
-}
-
-/* Zustand: HOVER & AKTIV (In beiden Modi) */
-.filter-btn:hover, 
-.filter-btn.active {
-    background: var(--accent) !important;
-    color: #FFFFFF !important; /* Erzwingt weiß auf lila */
-    border-color: var(--accent) !important;
-    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Speziell für den Darkmode (falls sie dort zu grell sind) */
-body.dark .filter-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-main);
-}
-
-
-/* Spezifische Korrektur für den Darkmode Toggle, falls dieser auch schwer zu sehen ist */
-.mode-toggle {
-    border: 1px solid var(--text-main);
-}
-
-/* ===============================
-   HERO LOGO BANNER (Verbessert)
-=============================== */
-.hero-logo-banner {
-    width: 100%;
-    padding: 80px 10% 40px 10%; /* Bündig mit dem Header-Padding */
+.hero-statement {
+    padding: 100px 5% 60px 5%;
+    text-align: center;
     background-color: var(--bg-main);
 }
 
-.hero-logo-wrapper {
-    display: flex;       /* Bringt Text und Quadrate in eine Reihe */
-    align-items: center; /* Zentriert sie vertikal zueinander */
-    gap: 15px;           /* Erzeugt einen schönen Abstand dazwischen */
+.statement-content {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.hero-logo-text {
-    margin: 0;           /* Entfernt Standard-Abstände vom H1 */
-    font-family: sans-serif; /* Oder deine gewählte Schrift */
+.pre-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.8;
 }
 
-.hero-logo-squares {
-    display: flex;
-    flex-shrink: 0; /* Verhindert, dass die Quadrate gequetscht werden */
-    margin-top: 10px; /* Optische Korrektur, damit sie auf der Grundlinie sitzen */
-}
-
-/* Die lila Quadrate */
-.hero-logo-squares .lila-square-top {
-    fill: var(--accent);
-}
-
-.hero-logo-squares .lila-square-bottom {
-    fill: var(--accent);
-    opacity: 0.6;
-}
-
-/* Dark Mode Support für das Logo */
-body.dark .hero-logo-text {
+.hero-statement h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
     color: var(--text-main);
+    margin-bottom: 30px;
+    letter-spacing: -1px;
 }
 
-/* Animation */
-.hero-logo-wrapper {
-    animation: fadeInSlide 1s ease-out forwards;
+.hero-statement p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--text-soft);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    line-height: 1.8;
 }
 
-@keyframes fadeInSlide {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* Die lila Linie als Abschluss zum Content */
+.statement-line {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 0 auto;
 }
 
-/* Mobile Optimierung: Weniger Abstand und kleinere Schrift */
-@media (max-width: 768px) {
-    .hero-logo-banner {
-        padding: 40px 5%;
+/* Mobile Optimierung */
+@media (max-width: 600px) {
+    .hero-statement {
+        padding: 60px 5% 40px 5%;
     }
-    .hero-logo-text {
-        font-size: 100px; /* In SVG Koordinaten */
-        letter-spacing: 5px;
+    .hero-statement h1 {
+        br { display: none; } /* Entfernt den Zeilenumbruch auf kleinen Screens */
     }
 }

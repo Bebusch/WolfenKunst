@@ -2,17 +2,17 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="wolf-logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wolfenkunst | Dein Zuhause</title>
+    <link rel="icon" type="image/svg+xml" href="wolf-logo.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+<header>
     <div class="header-left">
         <a href="index.html" class="header-logo-container">
-            <svg width="350" height="60" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
+            <svg width="350" height="60" viewBox="0 0 650 120" xmlns="http://www.w3.org/2000/svg" class="header-logo-svg">
                 <text x="25" y="85" font-size="54" font-family="Orbitron" font-weight="700" letter-spacing="7" class="logo-text">
                     WOLFENKUNST
                 </text>
@@ -24,23 +24,18 @@
     <nav class="header-nav">
         <a href="index.html">Start</a>
         <a href="gallery.html">Galerie</a>
-        <a href="kontakt.html">Anfragen</a>
-        <a href="https://deine-shop-url.de" target="_blank" rel="noopener" class="nav-shop">
-        Shop ↗
-    </a>
+        <a href="kontakt.html" class="nav-hide-mobile">Anfragen</a>
+        <a href="https://deine-shop-url.de" target="_blank" rel="noopener" class="nav-shop">Shop ↗</a>
         <button class="mode-toggle" onclick="toggleDarkMode()">◐</button>
     </nav>
 </header>
 
-<section class="hero-logo-banner">
-    <div class="hero-logo-wrapper">
-        <h1 class="hero-logo-text">WOLFENKUNST</h1>
-        <div class="hero-logo-squares">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0" y="0" width="40" height="40" class="lila-square-top"/>
-                <rect x="30" y="30" width="40" height="40" class="lila-square-bottom"/>
-            </svg>
-        </div>
+<section class="hero-statement">
+    <div class="statement-content">
+        <span class="pre-title">Handgefertigte Unikate</span>
+        <h1>ROHER BETON. <br> ZEITLOSES DESIGN.</h1>
+        <p>Wir formen Architektur für dein Zuhause. Jedes Stück ein Unikat, <br> geschaffen aus Leidenschaft und massivem Beton.</p>
+        <div class="statement-line"></div>
     </div>
 </section>
 
@@ -52,7 +47,7 @@
             </a>
         </div>
         <div class="text-block">
-            <a href="gallery.html#uc" style="text-decoration: none; color: inherit;">
+            <a href="gallery.html#uc">
                 <h2>URBAN CITY KOLLEKTION</h2>
             </a>
             <p>Massive Präsenz in ihrer flachsten Form – eine weitläufige Bühne aus rohem Beton für dein urbanes Interieur.</p>
@@ -66,7 +61,7 @@
             </a>
         </div>
         <div class="text-block">
-            <a href="gallery.html#ul" style="text-decoration: none; color: inherit;">
+            <a href="gallery.html#ul">
                 <h2>URBAN LIGHT KOLLEKTION</h2>
             </a>
             <p>Roher Beton im Dialog mit warmem Licht – ein handgefertigtes Unikat, das industrielle Härte in atmosphärische Eleganz verwandelt.</p>
@@ -80,7 +75,7 @@
             </a>
         </div>
         <div class="text-block">
-            <a href="gallery.html#us" style="text-decoration: none; color: inherit;">
+            <a href="gallery.html#us">
                 <h2>URBAN STUDIO KOLLEKTION</h2>
             </a>
             <p>Dein Workspace, neu definiert. Puristische Beton-Accessoires für Fokus und Struktur im Studio.</p>
@@ -88,12 +83,14 @@
     </section>
 </main>
 
-    <footer>
-        <p>&copy; 2026 Wolfenkunst</p>
+<footer>
+    <p>&copy; 2026 Wolfenkunst</p>
+    <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-    </footer>
+    </div>
+</footer>
 
-    <script src="theme.js"></script>
+<script src="theme.js"></script>
 </body>
 </html>
