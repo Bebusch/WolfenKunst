@@ -153,6 +153,17 @@ header {
     margin: 30px auto 0;
 }
 
+.pre-title {
+    font-family: 'Orbitron', sans-serif; /* Die markante Logo-Schrift */
+    font-size: 0.8rem;
+    letter-spacing: 5px;                /* Weiter Abstand für den Luxus-Look */
+    color: var(--accent);                /* Dein Lila */
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
 /* ============================================================
    4. CONTENT LAYOUT (ZICK-ZACK)
    ============================================================ */
