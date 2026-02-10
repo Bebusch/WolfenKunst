@@ -89,7 +89,7 @@ header {
 
 /* Shop Button Style */
 .nav-shop {
-    border: 1px solid var(--accent);
+    border: 2px solid var(--accent);
     padding: 6px 12px;
     border-radius: 4px;
     color: var(--accent) !important;
@@ -102,11 +102,12 @@ header {
 
 .mode-toggle {
     background: none;
-    border: 1px solid var(--accent);
+    border: 2px solid var(--accent);
     color: var(--text-main);
     padding: 4px 10px;
     cursor: pointer;
     border-radius: 4px;
+    font-size: 1.2rem;
 }
 
 /* Mobile Header Fix */
