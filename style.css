@@ -135,9 +135,6 @@ header {
         gap: 12px;
     }
 
-    .nav-hide-mobile {
-        display: none; /* Versteckt "Anfragen" auf kleinen Screens */
-    }
 }
 
 /* ============================================================
