@@ -217,3 +217,68 @@ body::after {
     pointer-events: none;
     z-index: 9999;
 }
+
+/* ============================================================
+   KONTAKTFORMULAR STYLES
+   ============================================================ */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#contact-form input, 
+#contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--bg-section);
+    border: 1px solid var(--border-soft);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    border-radius: 8px; /* Deine Rundung */
+    transition: border-color 0.3s;
+}
+
+#contact-form input:focus, 
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+#contact-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 18px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+}
+
+/* Mobile Fix für den Kasten */
+@media (max-width: 900px) {
+    .contact-wrapper {
+        padding: 40px 5% !important;
+        gap: 20px !important;
+    }
+    
+    .contact-form-side {
+        width: 100%;
+    }
+
+    /* Das Wolf-Logo im Content Bereich zentrieren */
+    .contact-logo-side {
+        order: -1; 
+        width: 100%;
+        padding-top: 0;
+    }
+}
