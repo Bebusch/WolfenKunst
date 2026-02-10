@@ -155,7 +155,7 @@ header {
 
 .pre-title {
     font-family: 'Orbitron', sans-serif; /* Die markante Logo-Schrift */
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     letter-spacing: 5px;                /* Weiter Abstand für den Luxus-Look */
     color: var(--accent);                /* Dein Lila */
     text-transform: uppercase;
