@@ -3,7 +3,6 @@
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600;700&display=swap');
 
-/* Überall Box-Sizing erzwingen, damit Padding nichts sprengt */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,7 @@
 
 html, body {
     max-width: 100%;
-    overflow-x: hidden; /* Verhindert seitliches Wackeln */
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -43,224 +42,162 @@ body {
 }
 
 /* ============================================================
-   2. HEADER & NAVIGATION (OPTIMIERT)
+   2. HEADER & NAVIGATION
    ============================================================ */
 header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
+    padding: 20px 5%;
     background-color: var(--bg-section);
-    position: relative;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .header-logo-container {
-    flex: 1; /* Nimmt den verfügbaren Platz ein, drückt Nav nach rechts */
-    display: flex;
-    align-items: center;
+    display: block;
+    max-width: 300px;
 }
 
 .header-logo-svg {
     width: 100%;
-    max-width: 280px; /* Begrenzt die Größe am Desktop */
     height: auto;
     display: block;
 }
 
+.logo-text { fill: var(--text-main); transition: fill 0.4s ease; }
+.lila-square-top { fill: var(--accent); }
+.lila-square-bottom { fill: var(--accent); opacity: 0.6; }
+
 .header-nav {
     display: flex;
     align-items: center;
-    gap: 15px;
-    flex-shrink: 0; /* Verhindert, dass die Knöpfe zusammengedrückt werden */
+    gap: 20px;
 }
 
-/* NAVIGATION FÜR MOBILE GERÄTE (UNTER 600PX) */
-@media (max-width: 600px) {
+.header-nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.header-nav a:hover { color: var(--accent); }
+
+/* Shop Button Style */
+.nav-shop {
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: var(--accent) !important;
+}
+
+.nav-shop:hover {
+    background: var(--accent);
+    color: white !important;
+}
+
+.mode-toggle {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--text-main);
+    padding: 4px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Mobile Header Fix */
+@media (max-width: 768px) {
     header {
-        flex-direction: column; /* Stapelt Logo über die Knöpfe */
+        flex-direction: column;
         gap: 15px;
-        padding: 15px 2%;
+        padding: 15px 5%;
     }
-
+    
     .header-logo-container {
-        max-width: 90%; /* Logo darf fast die ganze Breite nutzen */
-        justify-content: center;
-    }
-
-    .header-logo-svg {
-        max-width: 220px; /* Kleineres Logo auf dem Handy */
+        max-width: 240px;
     }
 
     .header-nav {
         width: 100%;
-        justify-content: center; /* Zentriert die Knöpfe */
+        justify-content: center;
         gap: 12px;
     }
 
-    .header-nav a {
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-    }
-
-    .mode-toggle {
-        padding: 6px 12px; /* Größere Klickfläche für den Finger */
+    .nav-hide-mobile {
+        display: none; /* Versteckt "Anfragen" auf kleinen Screens */
     }
 }
 
 /* ============================================================
-   3. HERO STATEMENT (STARTSEITE)
+   3. HERO STATEMENT
    ============================================================ */
 .hero-statement {
-    padding: clamp(60px, 10vh, 100px) 5%;
+    padding: 80px 5% 60px 5%;
     text-align: center;
-    background-color: var(--bg-main);
-}
-
-.statement-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.pre-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 5px;
-    color: var(--accent);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 20px;
-    opacity: 0.8;
 }
 
 .hero-statement h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 30px;
-    letter-spacing: -1px;
-}
-
-.hero-statement p {
-    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
-    color: var(--text-soft);
-    max-width: 700px;
-    margin: 0 auto 40px auto;
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    margin-bottom: 20px;
 }
 
 .statement-line {
-    width: 60px;
-    height: 4px;
-    background-color: var(--accent);
-    margin: 0 auto;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 30px auto 0;
 }
 
 /* ============================================================
-   4. CONTENT LAYOUT (STARTSEITE)
+   4. CONTENT LAYOUT (ZICK-ZACK)
    ============================================================ */
 .art-static-item {
     display: flex;
     align-items: center;
-    gap: 60px;
-    padding: 80px 5%;
+    gap: 40px;
+    padding: 60px 5%;
     max-width: 1400px;
     margin: 0 auto;
 }
 
 .art-static-item.reverse { flex-direction: row-reverse; }
 
-.art-image { flex: 1.2; width: 100%; }
+.art-image { flex: 1.2; }
 .art-image img {
     width: 100%;
-    height: auto;
+    border-radius: 12px;
     display: block;
-    object-fit: cover;
-    border-radius: 12px; /* Abgerundete Ecken */
-    transition: transform 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .text-block { flex: 1; }
-.text-block a { text-decoration: none; color: inherit; display: block; }
+.text-block h2 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; color: var(--accent); }
+.text-block a { text-decoration: none; color: inherit; }
 
-.text-block h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
-    margin-bottom: 20px;
-    color: var(--accent);
-    letter-spacing: 2px;
-}
-
-/* ============================================================
-   5. MOBILE ANPASSUNGEN (RESPONSIVE)
-   ============================================================ */
-
-/* Tablet & Mobile Zick-Zack */
 @media (max-width: 850px) {
-    .art-static-item, 
-    .art-static-item.reverse {
+    .art-static-item, .art-static-item.reverse {
         flex-direction: column;
         text-align: center;
-        padding: 40px 5%; /* Padding reduziert auf 5% */
-        gap: 30px;
-    }
-    
-    .art-image, .text-block {
-        width: 100%;
-    }
-}
-
-/* Speziell kleine Handys */
-@media (max-width: 600px) {
-    header {
-        padding: 15px 4%;
-    }
-    
-    .header-nav {
-        gap: 8px;
-    }
-    
-    .header-nav a {
-        font-size: 0.75rem;
-    }
-
-    .hero-statement h1 br {
-        display: none; /* Text bricht natürlich */
     }
 }
 
 /* ============================================================
-   6. FOOTER & EFFECTS
+   5. FOOTER & GRAIN
    ============================================================ */
-footer {
-    padding: 50px 5%;
-    background: var(--bg-section);
-    text-align: center;
-    border-top: 1px solid var(--border-soft);
-}
-
-footer a {
-    color: var(--text-soft);
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 0.8rem;
-}
+footer { padding: 40px; text-align: center; background: var(--bg-section); }
+.footer-links a { margin: 0 10px; color: var(--text-soft); text-decoration: none; font-size: 0.8rem; }
 
 body::after {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: url("images/grain.png");
-    opacity: 0.04;
+    opacity: 0.03;
     pointer-events: none;
     z-index: 9999;
-}
-
-/* Fix für Galerie-Bilder */
-.gallery-grid img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: cover !important;
 }
