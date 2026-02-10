@@ -102,7 +102,6 @@ header {
 
 .mode-toggle {
     background: none;
-    border: 2px solid var(--accent);
     color: var(--text-main);
     padding: 4px 10px;
     cursor: pointer;
