@@ -102,11 +102,19 @@ header {
 
 .mode-toggle {
     background: none;
-    color: var(--text-main);
-    padding: 4px 10px;
+    border: none; /* Rahmen entfernen */
+    color: var(--text-soft); /* Dezente Farbe */
     cursor: pointer;
-    border-radius: 4px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    padding: 5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.mode-toggle:hover {
+    color: var(--accent); /* Leuchtet lila beim Drüberfahren */
+    transform: rotate(15deg); /* Kleiner spielerischer Effekt */
 }
 
 /* Mobile Header Fix */
