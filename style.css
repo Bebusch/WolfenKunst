@@ -178,10 +178,15 @@ header {
 
 .art-static-item.reverse { flex-direction: row-reverse; }
 
-.art-image { flex: 1.2; }
+.art-image {
+    flex: 1.2;
+    width: 100%;
+    overflow: hidden; /* Zwingt das Bild, innerhalb der Rundung zu bleiben */
+    border-radius: 12px; /* Gleicher Wert wie beim Bild selbst */
+}
 .art-image img {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 4px; /* <--- DIESER WERT RUNDET AB LAN */
     display: block;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }

@@ -123,13 +123,25 @@
 @media (max-width: 600px) {
     .gallery-grid {
         grid-template-columns: 1fr;
+        gap: 20px; /* Genug Abstand zwischen den Bildern */
     }
+
     .gallery-item {
-        aspect-ratio: 4 / 3; /* Am Handy etwas quadratischer */
+        aspect-ratio: 4 / 3; 
+        border-radius: 12px; /* Rundung für die Galerie-Container am Handy */
+        overflow: hidden;    /* Wichtig: Schneidet das Bild an den Ecken ab */
     }
+
+    .gallery-item img {
+        border-radius: 12px; /* Rundung direkt auf das Bild */
+        object-fit: cover;
+    }
+
     .filter-btn {
         flex: 1 1 40%;
         font-size: 0.7rem;
+        border-radius: 4px;  /* Leicht abgerundete Buttons am Handy */
+        padding: 8px 5px;    /* Etwas kompakter für schmale Screens */
     }
 }
 
