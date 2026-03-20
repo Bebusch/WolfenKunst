@@ -287,3 +287,74 @@ body::after {
         padding-top: 0;
     }
 }
+
+/* WOLFENKUNST AI CHAT DESIGN */
+#art-bot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000;
+    font-family: inherit; /* Nutzt die Schriftart deiner Webseite */
+}
+
+#chat-btn {
+    background: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #333;
+    padding: 12px 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 300;
+    transition: all 0.4s ease;
+}
+
+#chat-btn:hover {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+#chat-box {
+    display: none; /* Wird per JS eingeblendet */
+    width: 320px;
+    height: 450px;
+    background: #ffffff;
+    border: 1px solid #1a1a1a;
+    margin-bottom: 15px;
+    flex-direction: column;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+}
+
+#chat-header {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 15px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#chat-log {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+
+#user-input {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    padding: 15px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 13px;
+    background: #f9f9f9;
+}
+
+.user-msg { color: #999; margin-bottom: 10px; text-align: right; font-size: 11px; text-transform: uppercase; }
+.ai-msg { color: #1a1a1a; margin-bottom: 15px; border-left: 2px solid #1a1a1a; padding-left: 12px; }
