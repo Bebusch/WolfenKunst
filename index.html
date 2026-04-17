@@ -129,18 +129,33 @@ async function sendToAI() {
 
     if (!input) return;
 
-    // 1. User Nachricht anzeigen
     log.innerHTML += `<div style="margin-bottom:10px;"><b>Du:</b> ${input}</div>`;
     inputField.value = '';
 
-    // 2. Lade-Symbol (Typing Indicator) hinzufügen
-    const loaderId = "loader-" + Date.now(); // Eindeutige ID zum späteren Löschen
-    log.innerHTML += `
-        <div id="${loaderId}" class="typing">
-            <span></span><span></span><span></span>
-        </div>
-    `;
+    const loaderId = "loader-" + Date.now();
+    log.innerHTML += `<div id="${loaderId}" class="typing"><span></span><span></span><span></span></div>`;
     log.scrollTop = log.scrollHeight;
+
+    // Der "Master-Prompt" für Jenni
+    const systemInstruction = `
+        Du bist Jenni, die digitale Kuratorin von Wolfenkunst. 
+        Dein Tonfall: Edel, herzlich, minimalistisch und absolut fachkundig über Beton-Design.
+        
+        Informationen über Wolfenkunst:
+        - Alle Stücke sind handgefertigte Unikate aus echtem Beton.
+        - Fokus: Purismus, Struktur und zeitlose Eleganz.
+        
+        Deine Kollektionen:
+        1. URBAN CITY: Massive Möbelkunst (z.B. Designträger, schwere Objekte), die Räumen Struktur verleiht.
+        2. URBAN LIGHT: Beton-Leuchten, die warmes Licht mit massiver Form verbinden.
+        3. URBAN STUDIO: Funktionale Deko-Objekte und Accessoires für den Alltag (Ruhe & Ordnung).
+        
+        Regeln für Jenni:
+        - Antworte kurz (max. 3-4 Sätze), außer der Kunde fragt nach Details.
+        - Wenn jemand nach Preisen oder Kauf fragt, verweise auf den 'Shop' Link oben.
+        - Du darfst Du-zen, bleib aber respektvoll wie in einer Galerie.
+        - Nenne dich bei der Begrüßung (falls passend) Jenni.
+    `;
 
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}`;
@@ -150,30 +165,32 @@ async function sendToAI() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 contents: [{ 
-                    parts: [{ text: "Du bist der digitale Kurator von Wolfenkunst. Antworte kurz auf Deutsch: " + input }] 
+                    parts: [{ 
+                        text: systemInstruction + "\n\nKundenanfrage: " + input 
+                    }] 
                 }]
             })
         });
 
         const data = await response.json();
-
-        // 3. Lade-Symbol entfernen
         const loader = document.getElementById(loaderId);
         if (loader) loader.remove();
 
         if (data.candidates && data.candidates[0].content) {
             const aiMsg = data.candidates[0].content.parts[0].text;
-            log.innerHTML += `<div style="margin-top:10px; border-left: 2px solid #8a2be2; padding-left: 8px;"><b>KI:</b> ${aiMsg}</div>`;
+            // Jenni bekommt einen lila Akzent bei ihrer Antwort
+            log.innerHTML += `<div style="margin-top:10px; border-left: 2px solid #8a2be2; padding-left: 12px; background: rgba(138, 43, 226, 0.05); padding-top: 5px; padding-bottom: 5px;">
+                <b style="color: #8a2be2; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">Jenni</b><br>
+                ${aiMsg}
+            </div>`;
         } else {
-            log.innerHTML += `<div style="color:red; font-size:11px;">Fehler bei der Anfrage.</div>`;
+            log.innerHTML += `<div style="color:red; font-size:11px;">Jenni macht gerade eine kurze Pause. Bitte versuche es gleich nochmal.</div>`;
         }
     } catch (error) {
-        // Auch im Fehlerfall das Lade-Symbol entfernen
         const loader = document.getElementById(loaderId);
         if (loader) loader.remove();
-        log.innerHTML += `<div style="color:red; font-size:11px;">Verbindung unterbrochen.</div>`;
+        log.innerHTML += `<div style="color:red; font-size:11px;">Verbindung zum Atelier unterbrochen.</div>`;
     }
-    
     log.scrollTop = log.scrollHeight;
 }
 
