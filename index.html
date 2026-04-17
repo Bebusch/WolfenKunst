@@ -104,54 +104,55 @@
 </div>
 
 <script>
-    const API_KEY = "AQ.Ab8RN6Jpbq6eHgPJHgLeSpgruF9Z7qp7I0V0FHOHglhdDI1Pmw"; // API Key
+// HIER DEINEN NEUEN KEY EINTRAGEN
+const API_KEY = "AQ.Ab8RN6Jpbq6eHgPJHgLeSpgruF9Z7qp7I0V0FHOHglhdDI1Pmw"; 
 
-    function toggleChat() {
-        const box = document.getElementById('chat-box');
-        box.style.display = box.style.display === 'none' ? 'flex' : 'none';
-    }
+async function sendToAI() {
+    const inputField = document.getElementById('user-input');
+    const log = document.getElementById('chat-log');
+    const input = inputField.value.trim();
 
-document.getElementById('user-input').addEventListener('keypress', async (e) => {
-    if (e.key === 'Enter') {
-        const input = e.target.value;
-        if (!input.trim()) return;
+    if (!input) return;
 
-        const log = document.getElementById('chat-log');
-        log.innerHTML += `<div style="margin-bottom:8px;"><b>Du:</b> ${input}</div>`;
-        e.target.value = '';
+    // User Nachricht anzeigen
+    log.innerHTML += `<div style="margin-bottom:10px;"><b>Du:</b> ${input}</div>`;
+    inputField.value = '';
 
-        try {
-            // Wir nutzen hier 1.5-flash – das ist schneller und stabiler
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
-            
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: "Antworte als Wolfenkunst-Assistent kurz auf Deutsch: " + input }] }]
-                })
-            });
+    try {
+        // Die URL exakt nach deinem API-Output:
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}`;
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                contents: [{ 
+                    parts: [{ 
+                        text: "Du bist der digitale Kurator von Wolfenkunst. Dein Stil: Minimalistisch, edel, fachkundig über Beton-Design. Antworte kurz auf Deutsch. Kunde fragt: " + input 
+                    }] 
+                }]
+            })
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            // LOG FÜR DICH: Schau in die Browser-Konsole (F12), um das hier zu sehen:
-            console.log("Google API Output:", data);
-
-            if (data.candidates && data.candidates[0].content) {
-                const aiMsg = data.candidates[0].content.parts[0].text;
-                log.innerHTML += `<div style="margin-top:10px; color:#555;"><b>KI:</b> ${aiMsg}</div>`;
-            } else if (data.error) {
-                // Wenn Google einen echten Fehler sendet (z.B. Key falsch)
-                log.innerHTML += `<div style="color:red; font-size:11px;">Fehler: ${data.error.message}</div>`;
-            } else {
-                log.innerHTML += `<div style="color:orange; font-size:11px;">Hinweis: Keine Antwort erhalten (Safety Filter?).</div>`;
-            }
-        } catch (error) {
-            console.error("Fetch Fehler:", error);
-            log.innerHTML += `<div style="color:red; font-size:11px;">Netzwerkfehler.</div>`;
+        if (data.candidates && data.candidates[0].content) {
+            const aiMsg = data.candidates[0].content.parts[0].text;
+            log.innerHTML += `<div style="margin-top:10px; border-left: 2px solid #8a2be2; padding-left: 8px;"><b>KI:</b> ${aiMsg}</div>`;
+        } else {
+            log.innerHTML += `<div style="color:red; font-size:11px;">System-Update erforderlich. Bitte erneut versuchen.</div>`;
+            console.error("API Error:", data);
         }
-        log.scrollTop = log.scrollHeight;
+    } catch (error) {
+        log.innerHTML += `<div style="color:red; font-size:11px;">Verbindung zum Atelier unterbrochen.</div>`;
     }
+    
+    log.scrollTop = log.scrollHeight;
+}
+
+// Enter-Taste aktivieren
+document.getElementById('user-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendToAI();
 });
 </script>
 </body>
