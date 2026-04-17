@@ -269,6 +269,97 @@ body::after {
     box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
 
+Ja, das ist absolut sinnvoll! Wenn du das CSS in die style.css auslagerst, bleibt dein HTML-Dokument sauber und übersichtlich. Zudem lädt die Seite schneller, und du hast alle Design-Einstellungen an einem zentralen Ort.
+
+Hier ist der saubere Weg, wie du das aufteilst:
+
+1. In deine style.css (Ganz unten anfügen)
+Kopiere diesen Block in deine CSS-Datei. Ich habe die Inline-Styles aus dem HTML in ordentliche Klassen umgewandelt:
+
+CSS
+/* --- Wolfenkunst Chatbot Styles --- */
+
+#art-bot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+}
+
+#chat-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7em;
+    box-shadow: 6px 6px 0px #8a2be2;
+    transition: all 0.3s ease;
+}
+
+#chat-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #8a2be2;
+    background: #000;
+}
+
+#chat-box {
+    display: none; /* Wird per JS auf 'flex' gesetzt */
+    width: 350px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 15px;
+    flex-direction: column;
+    box-shadow: 15px 15px 0px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #000;
+    color: #fff;
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7em;
+    text-align: center;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #333;
+}
+
+.chat-header span {
+    color: #8a2be2;
+}
+
+#chat-log {
+    height: 350px;
+    overflow-y: auto;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+    background: #1a1a1a;
+}
+
+#user-input {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #333;
+    padding: 15px;
+    background: #000;
+    color: #fff;
+    outline: none;
+    font-family: sans-serif;
+}
+
+/* Scrollbar Styling */
+#chat-log::-webkit-scrollbar { width: 4px; }
+#chat-log::-webkit-scrollbar-track { background: #1a1a1a; }
+#chat-log::-webkit-scrollbar-thumb { background: #333; }
+
+
 /* Mobile Fix für den Kasten */
 @media (max-width: 900px) {
     .contact-wrapper {
