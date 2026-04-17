@@ -129,9 +129,18 @@ async function sendToAI() {
 
     if (!input) return;
 
-    // Deine Nachricht anzeigen
+    // 1. User Nachricht anzeigen
     log.innerHTML += `<div style="margin-bottom:10px;"><b>Du:</b> ${input}</div>`;
     inputField.value = '';
+
+    // 2. Lade-Symbol (Typing Indicator) hinzufügen
+    const loaderId = "loader-" + Date.now(); // Eindeutige ID zum späteren Löschen
+    log.innerHTML += `
+        <div id="${loaderId}" class="typing">
+            <span></span><span></span><span></span>
+        </div>
+    `;
+    log.scrollTop = log.scrollHeight;
 
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}`;
@@ -141,29 +150,33 @@ async function sendToAI() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 contents: [{ 
-                    parts: [{ 
-                        text: "Du bist der digitale Kurator von Wolfenkunst. Dein Stil: Minimalistisch, edel, fachkundig über Beton-Design. Antworte kurz auf Deutsch. Kunde fragt: " + input 
-                    }] 
+                    parts: [{ text: "Du bist der digitale Kurator von Wolfenkunst. Antworte kurz auf Deutsch: " + input }] 
                 }]
             })
         });
 
         const data = await response.json();
 
+        // 3. Lade-Symbol entfernen
+        const loader = document.getElementById(loaderId);
+        if (loader) loader.remove();
+
         if (data.candidates && data.candidates[0].content) {
             const aiMsg = data.candidates[0].content.parts[0].text;
             log.innerHTML += `<div style="margin-top:10px; border-left: 2px solid #8a2be2; padding-left: 8px;"><b>KI:</b> ${aiMsg}</div>`;
         } else {
-            log.innerHTML += `<div style="color:red; font-size:11px;">System-Fehler: ${data.error ? data.error.message : 'Keine Antwort'}</div>`;
+            log.innerHTML += `<div style="color:red; font-size:11px;">Fehler bei der Anfrage.</div>`;
         }
     } catch (error) {
-        log.innerHTML += `<div style="color:red; font-size:11px;">Verbindung zum Atelier unterbrochen.</div>`;
+        // Auch im Fehlerfall das Lade-Symbol entfernen
+        const loader = document.getElementById(loaderId);
+        if (loader) loader.remove();
+        log.innerHTML += `<div style="color:red; font-size:11px;">Verbindung unterbrochen.</div>`;
     }
     
     log.scrollTop = log.scrollHeight;
 }
 
-// 4. Event Listener für Enter-Taste (global im Script)
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('user-input');
     if(input) {
