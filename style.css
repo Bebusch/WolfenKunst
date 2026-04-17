@@ -268,17 +268,6 @@ body::after {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
-
-Ja, das ist absolut sinnvoll! Wenn du das CSS in die style.css auslagerst, bleibt dein HTML-Dokument sauber und übersichtlich. Zudem lädt die Seite schneller, und du hast alle Design-Einstellungen an einem zentralen Ort.
-
-Hier ist der saubere Weg, wie du das aufteilst:
-
-1. In deine style.css (Ganz unten anfügen)
-Kopiere diesen Block in deine CSS-Datei. Ich habe die Inline-Styles aus dem HTML in ordentliche Klassen umgewandelt:
-
-CSS
-/* --- Wolfenkunst Chatbot Styles --- */
-
 #art-bot-container {
     position: fixed;
     bottom: 30px;
