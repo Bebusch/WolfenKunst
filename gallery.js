@@ -1,7 +1,3 @@
-/* ============================================================
-   WOLFENKUNST - GALLERY LOGIC
-   ============================================================ */
-
 const products = [
     {
         img: "images/uc1.jpg",
@@ -17,6 +13,7 @@ const products = [
         img: "images/uc2.jpg",
         title: "URBAN SLATE",
         category: "uc",
+        pos: "center",
         material: "Hochleistungsbeton, faserverstärkt",
         dimensions: "100 x 25 x 5 cm",
         weight: "12 kg",
@@ -26,6 +23,7 @@ const products = [
         img: "images/ul1.jpg",
         title: "URBAN PILLAR",
         category: "ul",
+        pos: "10%",
         material: "Beton & Bewehrungsstahl",
         dimensions: "ca. 20 x 20 x 100 cm",
         weight: "ca. 18 kg",
@@ -35,6 +33,7 @@ const products = [
         img: "images/us1.jpg",
         title: "URBAN RISE",
         category: "us",
+        pos: "center",
         material: "Beton",
         dimensions: "10 x 10 x 15 cm",
         weight: "1 kg",
@@ -44,6 +43,7 @@ const products = [
         img: "images/us2.jpg",
         title: "URBAN BLOCK",
         category: "us",
+        pos: "center",
         material: "Hochleistungsbeton, faserverstärkt",
         dimensions: "8 x 8 x 5 cm",
         weight: "0,2 kg",
@@ -53,6 +53,7 @@ const products = [
         img: "images/ul2.jpg",
         title: "URBAN GLOW",
         category: "ul",
+        pos: "center",
         material: "Stahlbeton, Messing-Finish",
         dimensions: "15 x 15 x 35 cm",
         weight: "4.2 kg",
@@ -63,7 +64,11 @@ const products = [
 let filteredProducts = [...products];
 let currentIndex = 0;
 
-// 1. GALERIE RENDERN
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxDesc = document.getElementById('lightbox-desc');
+
 function renderGallery(filter = 'all') {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
@@ -72,33 +77,27 @@ function renderGallery(filter = 'all') {
     filteredProducts = products.filter(p => filter === 'all' || p.category === filter);
 
     filteredProducts.forEach((product, index) => {
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    
-    // Nutzt das 'pos' Feld aus deinem Array (z.B. "20%" oder "center")
-    const imagePosition = product.pos ? `center ${product.pos}` : 'center center';
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        
+        // Nutzt das 'pos' Feld für den Fokus
+        const imagePosition = product.pos ? `center ${product.pos}` : 'center center';
 
-    item.innerHTML = `
-        <img src="${product.img}" alt="${product.title}" style="object-position: ${imagePosition}">
-        <div class="item-overlay"><span>${product.title}</span></div>
-    `;
+        item.innerHTML = `
+            <img src="${product.img}" alt="${product.title}" style="object-position: ${imagePosition}">
+            <div class="item-overlay"><span>${product.title}</span></div>
+        `;
 
-    item.onclick = () => openLightbox(index);
-    grid.appendChild(item);
-});
+        item.onclick = () => openLightbox(index);
+        grid.appendChild(item);
+    });
 }
-
-// 2. LIGHTBOX LOGIK
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxTitle = document.getElementById('lightbox-title');
-const lightboxDesc = document.getElementById('lightbox-desc');
 
 function openLightbox(index) {
     currentIndex = index;
     updateLightbox();
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Scrollen verhindern
+    document.body.style.overflow = 'hidden';
 }
 
 function updateLightbox() {
@@ -108,33 +107,15 @@ function updateLightbox() {
     lightboxImg.src = p.img;
     lightboxTitle.textContent = p.title;
     
-    // Hier kombinieren wir die Beschreibung mit den technischen Daten
+    // Hier werden die Specs eingefügt
     lightboxDesc.innerHTML = `
-        <p style="margin-bottom: 20px; line-height: 1.6;">${p.desc}</p>
-        
-        <div class="specs-box" style="border-top: 1px solid var(--accent); padding-top: 15px; margin-top: 15px;">
-            <div style="margin-bottom: 8px;">
-                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">MATERIAL:</strong> 
-                <span style="color: #ccc; margin-left: 10px;">${p.material || 'Beton'}</span>
-            </div>
-            <div style="margin-bottom: 8px;">
-                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">MASSE:</strong> 
-                <span style="color: #ccc; margin-left: 10px;">${p.dimensions || 'k.A.'}</span>
-            </div>
-            <div style="margin-bottom: 8px;">
-                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">GEWICHT:</strong> 
-                <span style="color: #ccc; margin-left: 10px;">${p.weight || 'k.A.'}</span>
-            </div>
+        <p style="margin-bottom: 20px;">${p.desc}</p>
+        <div style="border-top: 1px solid var(--accent); padding-top: 15px; text-align: left; font-size: 0.9rem;">
+            <div style="margin-bottom: 5px;"><strong>Material:</strong> ${p.material}</div>
+            <div style="margin-bottom: 5px;"><strong>Maße:</strong> ${p.dimensions}</div>
+            <div style="margin-bottom: 5px;"><strong>Gewicht:</strong> ${p.weight}</div>
         </div>
     `;
-}
-    
-    // Falls du die Specs-Felder (Material etc.) in der HTML hast:
-    if(document.getElementById('spec-material')) {
-        document.getElementById('spec-material').textContent = p.material;
-        document.getElementById('spec-dimensions').textContent = p.dimensions;
-        document.getElementById('spec-weight').textContent = p.weight;
-    }
 }
 
 function closeLightbox() {
@@ -142,19 +123,16 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
-// Schließen bei Klick auf X oder außerhalb des Bildes
 if (lightbox) {
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.className === 'close-lightbox') {
+        if (e.target === lightbox || e.target.classList.contains('close-lightbox')) {
             closeLightbox();
         }
     });
 }
 
-// 3. FILTER EVENT LISTENER
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
@@ -162,13 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
             renderGallery(btn.getAttribute('data-filter'));
         });
     });
-
-    renderGallery('all'); // Initialer Start
+    renderGallery('all');
 });
 
-// Tastatur-Steuerung für Lightbox
 document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
+    if (!lightbox || !lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % filteredProducts.length; updateLightbox(); }
     if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + filteredProducts.length) % filteredProducts.length; updateLightbox(); }
