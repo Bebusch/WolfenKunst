@@ -35,13 +35,10 @@
 }
 
 /* Das Grid */
-.gallery-grid img {
-    width: 100%;
-    height: 100%; /* Oder die feste Höhe deines Containers */
-    object-fit: cover; /* Sorgt dafür, dass das Bild den Raum füllt */
-    
-    /* Hier passiert die Magie: */
-    object-position: center 20%; 
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
 }
 
 .gallery-item {
