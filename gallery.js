@@ -4,7 +4,7 @@ const products = [
         title: "URBAN PLATEAU",
         category: "uc",
         pos: "30%",
-        material: "Hochleistungsbeton, handversiegelt",
+        material: "Hochleistungsbeton, faserverstärkt",
         dimensions: "120 x 60 x 40 cm",
         weight: "45 kg",
         desc: "Massive Präsenz in ihrer flachsten Form – eine weitläufige Bühne aus rohem Beton für dein urbanes Interieur."
@@ -24,7 +24,7 @@ const products = [
         title: "URBAN PILLAR",
         category: "ul",
         pos: "30%",
-        material: "Beton & Bewehrungsstahl",
+        material: "Beton, Bewehrungsstahl, Fassung (E27)",
         dimensions: "ca. 20 x 20 x 100 cm",
         weight: "ca. 18 kg",
         desc: "Massiver Beton trifft auf sichtbaren Stahl. Diese handgefertigte Stehleuchte verbindet archaische Materialien mit modernem Lichtdesign."
@@ -44,7 +44,7 @@ const products = [
         title: "URBAN BLOCK",
         category: "us",
         pos: "center",
-        material: "Hochleistungsbeton, faserverstärkt",
+        material: "Beton",
         dimensions: "8 x 8 x 5 cm",
         weight: "0,2 kg",
         desc: "Kompakte Geometrie, maximale Struktur. Dieser massive Betonblock dient als minimalistisches Dekorationsobjekt für dein Zuhause."
@@ -54,7 +54,7 @@ const products = [
         title: "URBAN GLOW",
         category: "ul",
         pos: "30%",
-        material: "Stahlbeton, Messing-Finish",
+        material: "Beton, Fassung (E27)",
         dimensions: "15 x 15 x 35 cm",
         weight: "4.2 kg",
         desc: "Roher Beton im Dialog mit warmem Licht. Diese handgefertigte Tischleuchte vereint industrielle Härte mit atmosphärischer Eleganz."
