@@ -168,18 +168,20 @@
     /* Die individuelle Position wird via JS als Inline-Style gesetzt */
 }
 
-/* Lightbox Optimierung */
 .close-lightbox {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    background: none;
-    border: none;
-    color: var(--accent); /* Dein Lila */
+    top: 30px;
+    right: 40px;
     font-size: 50px;
+    color: var(--accent); /* Dein Lila */
     cursor: pointer;
-    z-index: 2100;
     line-height: 1;
+    transition: transform 0.3s ease;
+    z-index: 2100;
+}
+
+.close-lightbox:hover {
+    transform: scale(1.2);
 }
 
 .lightbox-content {
@@ -222,10 +224,11 @@
 /* MOBILE ANPASSUNG FÜR LIGHTBOX */
 @media (max-width: 600px) {
     .close-lightbox {
-        top: 10px;
-        right: 15px;
+        top: 20px;
+        right: 20px;
         font-size: 40px;
     }
+}
     
     .lightbox-info h3 {
         font-size: 1.2rem;
