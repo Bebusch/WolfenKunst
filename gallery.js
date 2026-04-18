@@ -72,18 +72,20 @@ function renderGallery(filter = 'all') {
     filteredProducts = products.filter(p => filter === 'all' || p.category === filter);
 
     filteredProducts.forEach((product, index) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        
-        // Hier bauen wir das HTML inklusive des edlen Overlays
-        item.innerHTML = `
-            <img src="${product.img}" alt="${product.title}" style="object-position: ${product.pos || 'center'}">
-            <div class="item-overlay"><span>${product.title}</span></div>
-        `;
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    
+    // Nutzt das 'pos' Feld aus deinem Array (z.B. "20%" oder "center")
+    const imagePosition = product.pos ? `center ${product.pos}` : 'center center';
 
-        item.onclick = () => openLightbox(index);
-        grid.appendChild(item);
-    });
+    item.innerHTML = `
+        <img src="${product.img}" alt="${product.title}" style="object-position: ${imagePosition}">
+        <div class="item-overlay"><span>${product.title}</span></div>
+    `;
+
+    item.onclick = () => openLightbox(index);
+    grid.appendChild(item);
+});
 }
 
 // 2. LIGHTBOX LOGIK
@@ -101,9 +103,31 @@ function openLightbox(index) {
 
 function updateLightbox() {
     const p = filteredProducts[currentIndex];
+    if (!p) return;
+
     lightboxImg.src = p.img;
     lightboxTitle.textContent = p.title;
-    lightboxDesc.textContent = p.desc;
+    
+    // Hier kombinieren wir die Beschreibung mit den technischen Daten
+    lightboxDesc.innerHTML = `
+        <p style="margin-bottom: 20px; line-height: 1.6;">${p.desc}</p>
+        
+        <div class="specs-box" style="border-top: 1px solid var(--accent); padding-top: 15px; margin-top: 15px;">
+            <div style="margin-bottom: 8px;">
+                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">MATERIAL:</strong> 
+                <span style="color: #ccc; margin-left: 10px;">${p.material || 'Beton'}</span>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">MASSE:</strong> 
+                <span style="color: #ccc; margin-left: 10px;">${p.dimensions || 'k.A.'}</span>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong style="color: var(--accent); font-family: 'Orbitron'; font-size: 0.8rem;">GEWICHT:</strong> 
+                <span style="color: #ccc; margin-left: 10px;">${p.weight || 'k.A.'}</span>
+            </div>
+        </div>
+    `;
+}
     
     // Falls du die Specs-Felder (Material etc.) in der HTML hast:
     if(document.getElementById('spec-material')) {
