@@ -238,3 +238,21 @@
         font-size: 0.75rem;
     }
 }
+#lightbox-title {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 10px;
+    margin-bottom: 25px;
+}
+
+#lightbox-desc p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+
+.specs-container div {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Dezente Trennlinie */
+    padding-bottom: 5px;
+}
