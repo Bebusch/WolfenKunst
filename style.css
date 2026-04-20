@@ -378,34 +378,39 @@ body::after {
     }
 }
 
+/* --- OPTIMIERTER SLIDER BEREICH --- */
 .hero-statement {
     position: relative;
     overflow: hidden;
-    padding: 60px 20px;
+    padding: 80px 5% 60px 5%; /* Padding an dein restliches Design angepasst */
     text-align: center;
 }
 
 .statement-wrapper {
     position: relative;
-    height: 250px; /* Höhe je nach Textmenge anpassen */
+    min-height: 300px; /* Nutze min-height, damit bei langem Text nichts abgeschnitten wird */
+    display: flex;
+    justify-content: center;
 }
 
 .statement-content {
     position: absolute;
     width: 100%;
     top: 0;
-    left: 100%; /* Startet außerhalb rechts */
+    left: 100%; 
     opacity: 0;
     transition: all 0.8s ease-in-out;
+    pointer-events: none; /* Inaktive Texte sind nicht klickbar */
 }
 
 .statement-content.active {
     left: 0;
     opacity: 1;
+    pointer-events: auto; /* Nur der aktive Text ist klickbar/markierbar */
 }
 
 .statement-content.exit {
-    left: -100%; /* Schiebt sich nach links raus */
+    left: -100%;
     opacity: 0;
 }
 
@@ -420,20 +425,16 @@ body::after {
 .nav-bar {
     width: 40px;
     height: 4px;
-    background: rgba(0,0,0,0.2); /* Inaktive Farbe */
+    background: var(--border-soft); /* Nutzt deine Variable für dezente Optik */
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.nav-bar.active {
-    background: #000; /* Markante Farbe */
-    width: 60px;     /* Etwas breiter im aktiven Zustand */
-}
-.nav-bar {
-    cursor: pointer; /* Zeigt die Hand beim Drüberfahren */
-    transition: background 0.3s ease, width 0.3s ease;
+.nav-bar:hover {
+    background: var(--text-soft); /* Feedback beim Hover */
 }
 
-.nav-bar:hover {
-    background: rgba(0,0,0,0.5); /* Wird beim Drüberfahren etwas dunkler */
+.nav-bar.active {
+    background: var(--accent); /* Dein Wolfenkunst-Lila für den aktiven Status! */
+    width: 65px;               /* Deutlich markanter */
 }
