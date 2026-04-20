@@ -333,6 +333,8 @@ body::after {
     color: #fff;
     border: none;
     border-top: 1px solid #333;
+    /* Verhindert den Handy-Zoom */
+    font-size: 16px; 
 }
 
 .typing {
@@ -399,8 +401,8 @@ body::after {
     top: 0;
     left: 100%; 
     opacity: 0;
-    transition: all 0.8s ease-in-out;
-    pointer-events: none; /* Inaktive Texte sind nicht klickbar */
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Geschmeidigerer Slide */
+    pointer-events: none;
 }
 
 .statement-content.active {
@@ -420,6 +422,8 @@ body::after {
     justify-content: center;
     gap: 15px;
     margin-top: 30px;
+    position: relative;
+    z-index: 10;
 }
 
 .nav-bar {
