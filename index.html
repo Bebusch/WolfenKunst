@@ -30,11 +30,30 @@
 </header>
 
 <section class="hero-statement">
-    <div class="statement-content">
-        <span class="pre-title">Handgefertigte Unikate</span>
-        <h1>ROHER BETON. <br> ZEITLOSES DESIGN.</h1>
-        <p>Puristische Beton-Accessoires, die Fokus und Struktur <br> in deinen Lebensraum bringen.</p>
-        <div class="statement-line"></div>
+    <div class="statement-wrapper">
+        <div class="statement-content active" data-index="0">
+            <span class="pre-title">Handgefertigte Unikate</span>
+            <h1>ROHER BETON. <br> ZEITLOSES DESIGN.</h1>
+            <p>Puristische Beton-Accessoires, die Fokus und Struktur in deinen Lebensraum bringen.</p>
+        </div>
+
+        <div class="statement-content" data-index="1">
+            <span class="pre-title">Nachhaltig & Lokal</span>
+            <h1>ECHTES HANDWERK. <br> AUS DER REGION.</h1>
+            <p>Jedes Stück wird mit Liebe zum Detail in unserer kleinen Manufaktur gegossen.</p>
+        </div>
+
+        <div class="statement-content" data-index="2">
+            <span class="pre-title">Minimalismus</span>
+            <h1>KLARHEIT. <br> FÜR DEIN ZUHAUSE.</h1>
+            <p>Reduzierte Formen für ein modernes Ambiente ohne Ablenkung.</p>
+        </div>
+    </div>
+
+    <div class="statement-nav">
+        <div class="nav-bar active" onclick="goToSlide(0)"></div>
+        <div class="nav-bar" onclick="goToSlide(1)"></div>
+        <div class="nav-bar" onclick="goToSlide(2)"></div>
     </div>
 </section>
 
@@ -203,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-</script>
+    </script>
+
+    <script src="slider.js"></script>
 </body>
 </html>

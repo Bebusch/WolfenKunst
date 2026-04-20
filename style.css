@@ -377,3 +377,63 @@ body::after {
         padding-top: 0;
     }
 }
+
+.hero-statement {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.statement-wrapper {
+    position: relative;
+    height: 250px; /* Höhe je nach Textmenge anpassen */
+}
+
+.statement-content {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 100%; /* Startet außerhalb rechts */
+    opacity: 0;
+    transition: all 0.8s ease-in-out;
+}
+
+.statement-content.active {
+    left: 0;
+    opacity: 1;
+}
+
+.statement-content.exit {
+    left: -100%; /* Schiebt sich nach links raus */
+    opacity: 0;
+}
+
+/* Balken Navigation */
+.statement-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-bar {
+    width: 40px;
+    height: 4px;
+    background: rgba(0,0,0,0.2); /* Inaktive Farbe */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-bar.active {
+    background: #000; /* Markante Farbe */
+    width: 60px;     /* Etwas breiter im aktiven Zustand */
+}
+.nav-bar {
+    cursor: pointer; /* Zeigt die Hand beim Drüberfahren */
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.nav-bar:hover {
+    background: rgba(0,0,0,0.5); /* Wird beim Drüberfahren etwas dunkler */
+}
